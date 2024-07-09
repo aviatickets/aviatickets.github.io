@@ -5,7 +5,7 @@ tg.expand();
 tg.MainButton.textColor = '#FFFFFF';
 tg.MainButton.color = '#2cab37';
 
-var item = new Map();
+let item = new Map();
 
 let from_field = document.getElementById("from_field");
 let to_field = document.getElementById("to_field");
