@@ -5,7 +5,7 @@ tg.expand();
 tg.MainButton.textColor = '#FFFFFF';
 tg.MainButton.color = '#2cab37';
 
-let item = new Map();
+let item = {};
 
 let from_field = document.getElementById("from_field");
 let to_field = document.getElementById("to_field");
@@ -19,7 +19,7 @@ from_field.addEventListener("input", function(){
 		tg.MainButton.hide();
 	}
 	else {
-		item.set("from_field", from_field.value);
+		item["from_field"] = from_field.value;
 	}
 });
 
@@ -28,7 +28,7 @@ to_field.addEventListener("input", function(){
 		tg.MainButton.hide();
 	}
 	else {
-		item.set("to_field", to_field.value);
+		item["to_field"] = from_field.value;
 	}
 });
 
@@ -38,7 +38,7 @@ btn3.addEventListener("click", function(){
 	}
 	else {
 		tg.MainButton.setText("Вы выбрали товар 3!");
-		item.set("item", "3");
+		item["item"] = "3";
 		tg.MainButton.show();
 	}
 });
@@ -49,7 +49,7 @@ btn4.addEventListener("click", function(){
 	}
 	else {
 		tg.MainButton.setText("Вы выбрали товар 4!");
-		item = "4";
+		item["item"] = "4";
 		tg.MainButton.show();
 	}
 });
@@ -60,7 +60,7 @@ btn5.addEventListener("click", function(){
 	}
 	else {
 		tg.MainButton.setText("Вы выбрали товар 5!");
-		item = "5";
+		item["item"] = "5";
 		tg.MainButton.show();
 	}
 });
@@ -71,7 +71,7 @@ btn6.addEventListener("click", function(){
 	}
 	else {
 		tg.MainButton.setText("Вы выбрали товар 6!");
-		item = "6";
+		item["item"] = "6";
 		tg.MainButton.show();
 	}
 });
