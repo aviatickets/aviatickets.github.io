@@ -23,14 +23,12 @@ from_field.addEventListener("input", function(){
 	}
 });
 
-btn2.addEventListener("click", function(){
+to_field.addEventListener("input", function(){
 	if (tg.MainButton.isVisible) {
 		tg.MainButton.hide();
 	}
 	else {
-		tg.MainButton.setText("Вы выбрали товар 2!");
-		item.set("item", "2");
-		tg.MainButton.show();
+		item.set("to_field", to_field.value);
 	}
 });
 
@@ -40,7 +38,7 @@ btn3.addEventListener("click", function(){
 	}
 	else {
 		tg.MainButton.setText("Вы выбрали товар 3!");
-		item = "3";
+		item.set("item", "3");
 		tg.MainButton.show();
 	}
 });
