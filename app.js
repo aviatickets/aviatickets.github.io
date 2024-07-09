@@ -5,23 +5,21 @@ tg.expand();
 tg.MainButton.textColor = '#FFFFFF';
 tg.MainButton.color = '#2cab37';
 
-let item = "";
+var item = new Map();
 
-let btn1 = document.getElementById("btn1");
-let btn2 = document.getElementById("btn2");
+let from_field = document.getElementById("from_field");
+let to_field = document.getElementById("to_field");
 let btn3 = document.getElementById("btn3");
 let btn4 = document.getElementById("btn4");
 let btn5 = document.getElementById("btn5");
 let btn6 = document.getElementById("btn6");
 
-btn1.addEventListener("click", function(){
+from_field.addEventListener("input", function(){
 	if (tg.MainButton.isVisible) {
 		tg.MainButton.hide();
 	}
 	else {
-		tg.MainButton.setText("Вы выбрали товар 1!");
-		item = "1";
-		tg.MainButton.show();
+		item.set("from_field", from_field.value);
 	}
 });
 
@@ -31,7 +29,7 @@ btn2.addEventListener("click", function(){
 	}
 	else {
 		tg.MainButton.setText("Вы выбрали товар 2!");
-		item = "2";
+		item.set("item", "2");
 		tg.MainButton.show();
 	}
 });
