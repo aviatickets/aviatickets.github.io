@@ -46,7 +46,20 @@ body {
 }
 
 
-
+input[type="text"],
+        .input[contenteditable] {
+            display: inline-block;
+            box-sizing: border-box;
+            font-size: 14px;
+            width: 150px;
+            padding: 12px 20px;
+            margin: 15px 0;
+            border: 1px solid var(--tg-theme-link-color, #000);
+            background-color: var(--tg-theme-bg-color, #ffffff);
+            border-radius: 4px;
+            color: var(--tg-theme-text-color, #222222);
+            text-align: start;
+        }
 
 
 
