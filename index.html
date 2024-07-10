@@ -4,21 +4,76 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 	<title>Document</title>
 </head>
 <body>
 	<div class="container">
 		<div class="inner">
+
 			<div class="item">
-				<input type="text" placeholder="Откуда" id="from_field">
+				<div class="input-field">
+					<div class="input-field-input" id="from_field" contenteditable="true" dir="auto" data-no-linebreaks="1" inputmode="decimal" style="--letter-spacing: -0.32px;" data-left-pattern=" ‒‒‒ ‒‒‒ ‒‒‒‒">Турция</div>
+					<div class="input-field-border"></div>
+					<label>
+						<span class="i18n">Откуда</span>
+					</label>
+				</div>
 			</div>
 			<div class="item">
-				<input type="text" placeholder="Куда" id="to_field">
+				<div class="input-field">
+					<div class="input-field-input" id="to_field" contenteditable="true" dir="auto" data-no-linebreaks="1" inputmode="decimal" style="--letter-spacing: -0.32px;" data-left-pattern=" ‒‒‒ ‒‒‒ ‒‒‒‒">Турция</div>
+					<div class="input-field-border"></div>
+					<label>
+						<span class="i18n">Куда</span>
+					</label>
+				</div>
 			</div>
+
+
 			<div class="item">
-				<img src="1.png" alt="" class="img">
-				<button class="btn" id="btn3">Add</button>
+				<div class="input-field">
+					<input class="input-field-input" id="dates_to_field" name="daterange" value="01/01/2018 - 01/15/2018" />
+					<div class="input-field-border"></div>
+					<label>
+						<span class="i18n">Даты вылета</span>
+					</label>
+					<script>
+				$(function() {
+				  $('input[id="dates_to_field"]').daterangepicker({
+				    opens: 'left'
+				  }, function(start, end, label) {
+				    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+				  });
+				});
+				</script>
+				</div>
 			</div>
+
+
+			<div class="item">
+				<div class="input-field">
+					<input class="input-field-input" id="dates_from_field" name="daterange" value="01/01/2018 - 01/15/2018" />
+					<div class="input-field-border"></div>
+					<label>
+						<span class="i18n">Даты возвращения</span>
+					</label>
+					<script>
+				$(function() {
+				  $('input[id="dates_from_field"]').daterangepicker({
+				    opens: 'left'
+				  }, function(start, end, label) {
+				    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+				  });
+				});
+				</script>
+				</div>
+			</div>
+
+
 			<div class="item">
 				<img src="1.png" alt="" class="img">
 				<button class="btn" id="btn4">Add</button>
@@ -39,5 +94,6 @@
 
 	<script src="https://telegram.org/js/telegram-web-app.js"></script>
 	<script src="app.js"></script>
+
 </body>
 </html>
