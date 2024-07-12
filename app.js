@@ -9,8 +9,10 @@ var item = new Map();
 
 let from_field = document.getElementById("from_field");
 let to_field = document.getElementById("to_field");
+                    const FLATPICKR_CUSTOM_YEAR_SELECT = 'flatpickr-custom-year-select';
 
 $("#dates_to").flatpickr({
+
             mode: "multiple",
             altInput: true,
             dateFormat: "Y-m-d",
@@ -20,6 +22,45 @@ $("#dates_to").flatpickr({
             locale: {firstDayOfWeek: 1},
             locale: "ru",
             inline: true,
+            maxDate: new Date().fp_incr(999),
+
+            onReady: function (selectedDates, dateStr, instance) {
+
+                    const flatpickrYearElement = instance.currentYearElement;
+
+                    const children = flatpickrYearElement.parentElement.children;
+                    for (let i in children) {
+                        if (children.hasOwnProperty(i)) {
+                            children[i].style.display = 'none';
+                        }
+                    }
+
+                    const yearSelect = document.createElement('select');
+                    const minYear = new Date(instance.config._minDate).getFullYear();
+                    const maxYear = new Date(instance.config._maxDate).getFullYear();
+                    for (let i = minYear; i < maxYear; i++) {
+                        const option = document.createElement('option');
+                        option.value = '' + i;
+                        option.text = '' + i;
+                        yearSelect.appendChild(option);
+                    }
+                    yearSelect.addEventListener('change', function (event) {
+                        flatpickrYearElement.value = event.target['value'];
+                        instance.currentYear = parseInt(event.target['value']);
+                        instance.redraw();
+                    });
+
+                    yearSelect.className = 'flatpickr-monthDropdown-months';
+                    yearSelect.id = FLATPICKR_CUSTOM_YEAR_SELECT;
+                    yearSelect.value = instance.currentYearElement.value;
+
+                    flatpickrYearElement.parentElement.appendChild(yearSelect);
+                },
+                onMonthChange: function (selectedDates, dateStr, instance) {
+                    document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT).value = '' + instance.currentYear;
+                },
+
+
             onChange: function(selectedDates, dateStr, instance) {
             if (selectedDates.length != 0) {
                 item.set("dates_to", dateStr);
@@ -59,6 +100,46 @@ $("#dates_from").flatpickr({
             locale: {firstDayOfWeek: 1},
             locale: "ru",
             inline: true,
+
+            maxDate: new Date().fp_incr(999),
+
+            onReady: function (selectedDates, dateStr, instance) {
+
+                    const flatpickrYearElement = instance.currentYearElement;
+
+                    const children = flatpickrYearElement.parentElement.children;
+                    for (let i in children) {
+                        if (children.hasOwnProperty(i)) {
+                            children[i].style.display = 'none';
+                        }
+                    }
+
+                    const yearSelect = document.createElement('select');
+                    const minYear = new Date(instance.config._minDate).getFullYear();
+                    const maxYear = new Date(instance.config._maxDate).getFullYear();
+                    for (let i = minYear; i < maxYear; i++) {
+                        const option = document.createElement('option');
+                        option.value = '' + i;
+                        option.text = '' + i;
+                        yearSelect.appendChild(option);
+                    }
+                    yearSelect.addEventListener('change', function (event) {
+                        flatpickrYearElement.value = event.target['value'];
+                        instance.currentYear = parseInt(event.target['value']);
+                        instance.redraw();
+                    });
+
+                    yearSelect.className = 'flatpickr-monthDropdown-months';
+                    yearSelect.id = FLATPICKR_CUSTOM_YEAR_SELECT;
+                    yearSelect.value = instance.currentYearElement.value;
+
+                    flatpickrYearElement.parentElement.appendChild(yearSelect);
+                },
+                onMonthChange: function (selectedDates, dateStr, instance) {
+                    document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT).value = '' + instance.currentYear;
+                },
+
+
             onChange: function(selectedDates, dateStr, instance) {
             if (selectedDates.length != 0) {
                 item.set("dates_from", dateStr);
@@ -113,7 +194,7 @@ to_field.addEventListener("input", function(){
 
 
 Telegram.WebApp.onEvent("mainButtonClicked", function(){
-	tg.sendData(item);
+	tg.sendData(JSON.stringify(item));
 });
 
 
