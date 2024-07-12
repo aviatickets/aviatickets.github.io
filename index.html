@@ -31,7 +31,6 @@
 
 <div class="container">
     <div class="inner">
-
         <div class="item">
             <div class="input-field">
                 <input class="input-field-input" id="from_field" placeholder="Москва">
@@ -50,156 +49,41 @@
                 </label>
             </div>
         </div>
-
         <div class="item">
-                                <span class="i18n">Даты вылета</span>
+            <div class="input-field">
 
-            <div class="input-field col-md-7 date_time_picker d-none" style="width: auto !important;"></div>
-            <div class="input-field col-md-5"></div>
-            <script>
-						$(".date_time_picker").flatpickr({
-            mode: "multiple",
-            altInput: true,
-            dateFormat: "Y-m-d",
-            altFormat: "d-m-Y",
-            conjunction: " , ",
-            minDate: "today",
-            locale: {firstDayOfWeek: 1},
-            locale: "ru",
-            inline: true,
-            onChange: function(selectedDates, dateStr, instance) {
-        var selectedDatesStr = selectedDates.reduce(function(acc, ele) {
-            var str = instance.formatDate(ele, "d.m.Y");
-            acc = (acc == '') ? str : acc + ';' + str;
-            return acc;
-        }, '');
-        instance.set('enable', [function(date) {
-            if (selectedDates.length >= 8) {
-                var currDateStr = instance.formatDate(date, "d.m.Y")
-                var x = selectedDatesStr.indexOf(currDateStr);
-                return x != -1;
-            } else {
-                return true;}
-        }]);
-    }
-});
-
-            </script>
+                <label style="margin-top: 17px;">
+                    <span class="i18n">Даты туда</span>
+                </label>
+                <div class="date_time_picker d-none " id="dates_to" style="width: auto !important;"></div>
+                <script>
 
 
+
+
+
+                </script>
+
+
+            </div>
         </div>
-    </div>
+        <div class="item">
+            <div class="input-field">
+
+                <label style="margin-top: 17px;">
+                    <span class="i18n">Даты обратно</span>
+                </label>
+                <div class="date_time_picker d-none" id="dates_from" style="width: auto !important;"></div>
 
 
-    <div class="item">
-                                <span class="i18n">Даты возвращения</span>
-
-            <div class="input-field col-md-7 date_time_picker d-none" style="width: auto !important;"></div>
-            <div class="input-field col-md-5"></div>
-            <script>
-						$(".date_time_picker").flatpickr({
-            mode: "multiple",
-            altInput: true,
-            dateFormat: "Y-m-d",
-            altFormat: "d-m-Y",
-            conjunction: " , ",
-            minDate: "today",
-            locale: {firstDayOfWeek: 1},
-            locale: "ru",
-            inline: true,
-            onChange: function(selectedDates, dateStr, instance) {
-        var selectedDatesStr = selectedDates.reduce(function(acc, ele) {
-            var str = instance.formatDate(ele, "d.m.Y");
-            acc = (acc == '') ? str : acc + ';' + str;
-            return acc;
-        }, '');
-        instance.set('enable', [function(date) {
-            if (selectedDates.length >= 8) {
-                var currDateStr = instance.formatDate(date, "d.m.Y")
-                var x = selectedDatesStr.indexOf(currDateStr);
-                return x != -1;
-            } else {
-                return true;}
-        }]);
-    }
-});
-
-            </script>
-
-
-        </div>
-    </div>
-
-
-    <div class="item">
-        <div class="input-field">
-            <input class="input-field-input" id="dates_to_field" placeholder="Pick a date"/>
-            <div class="input-field-border"></div>
-            <label>
-                <span class="i18n">Даты вылета</span>
-            </label>
-            <script>
-						$("#dates_to_field").flatpickr({
-						locale: {
-        					firstDayOfWeek: 1
-    							},
-
-    					mode: "multiple",
-    					dateFormat: "d.m.Y",
-    					defaultDate: null,
-    					minDate: "today",
-    					onChange: function(selectedDates, dateStr, instance) {
-        var selectedDatesStr = selectedDates.reduce(function(acc, ele) {
-            var str = instance.formatDate(ele, "d.m.Y");
-            acc = (acc == '') ? str : acc + ';' + str;
-            return acc;
-        }, '');
-        instance.set('enable', [function(date) {
-            if (selectedDates.length >= 8) {
-                var currDateStr = instance.formatDate(date, "d.m.Y")
-                var x = selectedDatesStr.indexOf(currDateStr);
-                return x != -1;
-            } else {
-                return true;}
-        }]);
-    }
-});
-
-            </script>
-        </div>
-    </div>
-
-    <div class="item">
-        <div class="input-field">
-
-            <input class="input-field-input" id="dates_from_field" placeholder="Pick a date"/>
-            <div class="input-field-border"></div>
-            <label>
-                <span class="i18n">Даты возвращения</span>
-            </label>
-            <script>
-						$("#dates_from_field").flatpickr({
-						locale: {
-        					firstDayOfWeek: 1
-    							},
-    					onReady: function () {
-    					    this.jumpToDate("2025-01")
-    					},
-    					mode: "multiple",
-    					dateFormat: "d.m.Y",
-    					defaultDate: null,
-    					minDate: "today"
-														});
-
-            </script>
+            </div>
         </div>
     </div>
 
 </div>
-</div>
-<div class="usercard" id="usercard">
 
-</div>
+
+<div class="usercard" id="usercard"></div>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script src="app.js"></script>
