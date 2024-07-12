@@ -23,7 +23,7 @@ $("#dates_to").flatpickr({
             onChange: function(selectedDates, dateStr, instance) {
             if (selectedDates.length != 0) {
                 item.set("dates_to", dateStr);
-                if (!from_field.value && !to_field.value) {
+                if (from_field.value != '' && to_field.value != '') {
                     tg.MainButton.setText("Поиск билетов");
 		            tg.MainButton.show(); } else {tg.MainButton.hide();}}
 		    else {
@@ -62,7 +62,7 @@ $("#dates_from").flatpickr({
             onChange: function(selectedDates, dateStr, instance) {
             if (selectedDates.length != 0) {
                 item.set("dates_from", dateStr);
-                if (!from_field.value && !to_field.value && item.has('dates_to')) {
+                if (from_field.value != '' && to_field.value != '' && item.has('dates_to')) {
                     tg.MainButton.setText("Поиск билетов");
 		            tg.MainButton.show(); } else {tg.MainButton.hide();}}
 		    else {
@@ -92,7 +92,7 @@ from_field.addEventListener("input", function(){
 	else {
 		item.set("from_field", from_field.value);
 	}
-	if (!from_field.value && item.has('dates_to') && item.has('to_field')) {
+	if (from_field.value != '' && item.has('dates_to') && item.has('to_field')) {
 	tg.MainButton.setText("Поиск билетов");
 		tg.MainButton.show();
 		}
@@ -105,7 +105,7 @@ to_field.addEventListener("input", function(){
 	else {
 		item.set("to_field", to_field.value);
 	}
-	if (!to_field.value && item.has('dates_to') && item.has('from_field')) {
+	if (to_field.value != '' && item.has('dates_to') && item.has('from_field')) {
 	tg.MainButton.setText("Поиск билетов");
 		tg.MainButton.show();
 		}
