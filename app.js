@@ -5,22 +5,97 @@ tg.expand();
 tg.MainButton.textColor = '#FFFFFF';
 tg.MainButton.color = '#2cab37';
 
-let item = {};
+var item = new Map();
 
 let from_field = document.getElementById("from_field");
 let to_field = document.getElementById("to_field");
-let btn3 = document.getElementById("btn3");
-let btn4 = document.getElementById("btn4");
-let btn5 = document.getElementById("btn5");
-let btn6 = document.getElementById("btn6");
+
+$("#dates_to").flatpickr({
+            mode: "multiple",
+            altInput: true,
+            dateFormat: "Y-m-d",
+            altFormat: "d-m-Y",
+            conjunction: " , ",
+            minDate: "today",
+            locale: {firstDayOfWeek: 1},
+            locale: "ru",
+            inline: true,
+            onChange: function(selectedDates, dateStr, instance) {
+            if (selectedDates.length != 0) {
+                item.set("dates_to", dateStr);
+                if (item.has('from_field') && item.has('to_field')) {
+                    tg.MainButton.setText("Поиск билетов");
+		            tg.MainButton.show(); } else {tg.MainButton.hide();}}
+		    else {
+		            delete item.delete('dates_to');
+                    tg.MainButton.hide();
+
+                }
+        var selectedDatesStr = selectedDates.reduce(function(acc, ele) {
+
+            var str = instance.formatDate(ele, "d.m.Y");
+            acc = (acc == '') ? str : acc + ';' + str;
+            return acc;
+        }, '');
+        instance.set('enable', [function(date) {
+            if (selectedDates.length >= 8) {
+                var currDateStr = instance.formatDate(date, "d.m.Y")
+                var x = selectedDatesStr.indexOf(currDateStr);
+                return x != -1;
+            } else {
+                return true;}
+        }]);
+    }
+});
+
+
+$("#dates_from").flatpickr({
+            mode: "multiple",
+            altInput: true,
+            dateFormat: "Y-m-d",
+            altFormat: "d-m-Y",
+            conjunction: " , ",
+            minDate: "today",
+            locale: {firstDayOfWeek: 1},
+            locale: "ru",
+            inline: true,
+            onChange: function(selectedDates, dateStr, instance) {
+            if (selectedDates.length != 0) {
+                item.set("dates_from", dateStr);
+                if (item.has('from_field') && item.has('to_field')) {
+                    tg.MainButton.setText("Поиск билетов");
+		            tg.MainButton.show(); } else {tg.MainButton.hide();}}
+		    else {
+		            delete item.delete('dates_to');
+                }
+        var selectedDatesStr = selectedDates.reduce(function(acc, ele) {
+
+            var str = instance.formatDate(ele, "d.m.Y");
+            acc = (acc == '') ? str : acc + ';' + str;
+            return acc;
+        }, '');
+        instance.set('enable', [function(date) {
+            if (selectedDates.length >= 8) {
+                var currDateStr = instance.formatDate(date, "d.m.Y")
+                var x = selectedDatesStr.indexOf(currDateStr);
+                return x != -1;
+            } else {
+                return true;}
+        }]);
+    }
+});
 
 from_field.addEventListener("input", function(){
 	if (tg.MainButton.isVisible) {
 		tg.MainButton.hide();
 	}
 	else {
-		item["from_field"] = from_field.value;
+		item.set("from_field", from_field.value);
 	}
+	if (!from_field.value && item.has('dates_to') && item.has('to_field')) {
+	tg.MainButton.setText("Поиск билетов");
+		tg.MainButton.show();
+		}
 });
 
 to_field.addEventListener("input", function(){
@@ -28,57 +103,17 @@ to_field.addEventListener("input", function(){
 		tg.MainButton.hide();
 	}
 	else {
-		item["to_field"] = from_field.value;
+		item.set("to_field", to_field.value);
 	}
-});
-
-btn3.addEventListener("click", function(){
-	if (tg.MainButton.isVisible) {
-		tg.MainButton.hide();
-	}
-	else {
-		tg.MainButton.setText("Вы выбрали товар 3!");
-		item["item"] = "3";
+	if (!to_field.value && item.has('dates_to') && item.has('from_field')) {
+	tg.MainButton.setText("Поиск билетов");
 		tg.MainButton.show();
-	}
-});
-
-btn4.addEventListener("click", function(){
-	if (tg.MainButton.isVisible) {
-		tg.MainButton.hide();
-	}
-	else {
-		tg.MainButton.setText("Вы выбрали товар 4!");
-		item["item"] = "4";
-		tg.MainButton.show();
-	}
-});
-
-btn5.addEventListener("click", function(){
-	if (tg.MainButton.isVisible) {
-		tg.MainButton.hide();
-	}
-	else {
-		tg.MainButton.setText("Вы выбрали товар 5!");
-		item["item"] = "5";
-		tg.MainButton.show();
-	}
-});
-
-btn6.addEventListener("click", function(){
-	if (tg.MainButton.isVisible) {
-		tg.MainButton.hide();
-	}
-	else {
-		tg.MainButton.setText("Вы выбрали товар 6!");
-		item["item"] = "6";
-		tg.MainButton.show();
-	}
+		}
 });
 
 
 Telegram.WebApp.onEvent("mainButtonClicked", function(){
-	tg.sendData(JSON.stringify(item));
+	tg.sendData(item);
 });
 
 
@@ -95,6 +130,8 @@ usercard.appendChild(p);
 
 
 
+
+document.querySelector("#dates_to")._flatpickr.selectedDates
 
 
 
