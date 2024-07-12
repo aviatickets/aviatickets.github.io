@@ -62,7 +62,7 @@ $("#dates_from").flatpickr({
             onChange: function(selectedDates, dateStr, instance) {
             if (selectedDates.length != 0) {
                 item.set("dates_from", dateStr);
-                if (item.has('from_field') && item.has('to_field')) {
+                if (item.has('from_field') && item.has('to_field') and item.has('dates_to')) {
                     tg.MainButton.setText("Поиск билетов");
 		            tg.MainButton.show(); } else {tg.MainButton.hide();}}
 		    else {
