@@ -194,7 +194,7 @@ to_field.addEventListener("input", function(){
 
 
 Telegram.WebApp.onEvent("mainButtonClicked", function(){
-	tg.sendData(JSON.stringify(item));
+	tg.sendData(JSON.stringify(Object.fromEntries(item)));
 });
 
 
