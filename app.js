@@ -1,9 +1,33 @@
+// Получаем параметры из URL-адреса
+function getUrlParams() {
+  const params = new URLSearchParams(window.location.search);
+  const result = {};
+  for (const [key, value] of params.entries()) {
+    result[key] = value;
+  }
+  return result;
+}
+
+// Заполняем поля ввода значениями из параметров
+function populateInputFields() {
+  const urlParams = getUrlParams();
+  if (urlParams['from_field']) {
+  document.getElementById('from_field').value = urlParams['from_field'];}
+
+}
+
+// Вызываем функцию при загрузке страницы
+window.addEventListener('load', populateInputFields);
+
 let tg = window.Telegram.WebApp;
 
 tg.expand();
 
 tg.MainButton.textColor = '#FFFFFF';
 tg.MainButton.color = '#2cab37';
+
+
+
 
 var item = new Map();
 
@@ -212,7 +236,8 @@ usercard.appendChild(p);
 
 
 
-document.querySelector("#dates_to")._flatpickr.selectedDates
+
+
 
 
 
