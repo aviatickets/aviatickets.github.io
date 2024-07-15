@@ -191,12 +191,10 @@ $("#dates_from").flatpickr({
 });
 
 from_field.addEventListener("input", function(){
-	if (tg.MainButton.isVisible) {
+	if (from_field.value == '' && tg.MainButton.isVisible) {
 		tg.MainButton.hide();
 	}
-	else {
-		item.set("from_field", from_field.value);
-	}
+
 	if (from_field.value != '' && item.has('dates_to') && to_field.value != '') {
 	tg.MainButton.setText("Поиск билетов");
 		tg.MainButton.show();
@@ -204,13 +202,12 @@ from_field.addEventListener("input", function(){
 });
 
 to_field.addEventListener("input", function(){
-	if (tg.MainButton.isVisible) {
+	if (to_field.value == '' && tg.MainButton.isVisible) {
 		tg.MainButton.hide();
 	}
-	else {
-		item.set("to_field", to_field.value);
-	}
+
 	if (to_field.value != '' && item.has('dates_to') && from_field.value != '') {
+	item.set("to_field", to_field.value);
 	tg.MainButton.setText("Поиск билетов");
 		tg.MainButton.show();
 		}
