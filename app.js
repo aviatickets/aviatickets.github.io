@@ -31,8 +31,8 @@ tg.MainButton.color = '#2cab37';
 
 var item = new Map();
 
-let from_field = document.getElementById("from_field");
-let to_field = document.getElementById("to_field");
+const from_field = document.getElementById("from_field");
+const to_field = document.getElementById("to_field");
                     const FLATPICKR_CUSTOM_YEAR_SELECT = 'flatpickr-custom-year-select';
 
 $("#dates_to").flatpickr({
@@ -197,7 +197,7 @@ from_field.addEventListener("input", function(){
 	else {
 		item.set("from_field", from_field.value);
 	}
-	if (from_field.value != '' && item.has('dates_to') && item.has('to_field')) {
+	if (from_field.value != '' && item.has('dates_to') && to_field.value != '') {
 	tg.MainButton.setText("Поиск билетов");
 		tg.MainButton.show();
 		}
@@ -210,7 +210,7 @@ to_field.addEventListener("input", function(){
 	else {
 		item.set("to_field", to_field.value);
 	}
-	if (to_field.value != '' && item.has('dates_to') && item.has('from_field')) {
+	if (to_field.value != '' && item.has('dates_to') && from_field.value != '') {
 	tg.MainButton.setText("Поиск билетов");
 		tg.MainButton.show();
 		}
