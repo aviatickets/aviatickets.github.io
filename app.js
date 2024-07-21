@@ -7,8 +7,9 @@ function getUrlParams() {
   }
   return result;
 }
-const default_dates_to = getUrlParams()['dates_to'];
-const default_dates_return = getUrlParams()['dates_return'];
+
+const default_dates_to = getUrlParams()['dates_to'] && getUrlParams()['dates_to'].split(',').map(date => date.trim());
+const default_dates_return = getUrlParams()['dates_return'] && getUrlParams()['dates_return'].split(',').map(date => date.trim());
 
 // Заполняем поля ввода значениями из параметров
 function populateInputFields() {
