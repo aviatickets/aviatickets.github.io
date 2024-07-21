@@ -16,9 +16,14 @@ function populateInputFields() {
   const urlParams = getUrlParams();
   if (urlParams['from_field']) {document.getElementById('from_field').value = urlParams['from_field'];}
   if (urlParams['to_field']) {document.getElementById('to_field').value = urlParams['to_field'];}
-  if (urlParams['dates_to']) {document.getElementById('dates_to').value = urlParams['dates_to'];}
-  if (urlParams['dates_return']) {document.getElementById('dates_return').value = urlParams['dates_return'];}
+  if (urlParams['dates_to']) {item.set("dates_to", urlParams['dates_to']);}
+  if (urlParams['dates_return']) {item.set("dates_return", urlParams['dates_return']);}
   if (urlParams['repeat']) {tg.sendData(JSON.stringify(Object.fromEntries(item)));}
+  if (to_field.value != '' && item.has('dates_to') && from_field.value != '') {
+	item.set("to_field", to_field.value);
+	tg.MainButton.setText("Поиск билетов");
+		tg.MainButton.show();
+		}
 }
 
 // Вызываем функцию при загрузке страницы
