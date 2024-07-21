@@ -7,13 +7,17 @@ function getUrlParams() {
   }
   return result;
 }
+const default_dates_to = getUrlParams()['dates_to'];
+const default_dates_return = getUrlParams()['dates_return'];
 
 // Заполняем поля ввода значениями из параметров
 function populateInputFields() {
   const urlParams = getUrlParams();
-  if (urlParams['from_field']) {
-  document.getElementById('from_field').value = urlParams['from_field'];}
-
+  if (urlParams['from_field']) {document.getElementById('from_field').value = urlParams['from_field'];}
+  if (urlParams['to_field']) {document.getElementById('to_field').value = urlParams['to_field'];}
+  if (urlParams['dates_to']) {document.getElementById('dates_to').value = urlParams['dates_to'];}
+  if (urlParams['dates_return']) {document.getElementById('dates_return').value = urlParams['dates_return'];}
+  if (urlParams['repeat']) {tg.sendData(JSON.stringify(Object.fromEntries(item)));}
 }
 
 // Вызываем функцию при загрузке страницы
@@ -47,7 +51,7 @@ $("#dates_to").flatpickr({
             locale: "ru",
             inline: true,
             maxDate: new Date().fp_incr(999),
-
+            defaultDate: false || default_dates_to,
             onReady: function (selectedDates, dateStr, instance) {
 
                     const flatpickrYearElement = instance.currentYearElement;
@@ -114,7 +118,7 @@ $("#dates_to").flatpickr({
 });
 
 
-$("#dates_from").flatpickr({
+$("#dates_return").flatpickr({
             mode: "multiple",
             altInput: true,
             dateFormat: "Y-m-d",
@@ -124,7 +128,7 @@ $("#dates_from").flatpickr({
             locale: {firstDayOfWeek: 1},
             locale: "ru",
             inline: true,
-
+            defaultDate: false || default_dates_return,
             maxDate: new Date().fp_incr(999),
 
             onReady: function (selectedDates, dateStr, instance) {
@@ -166,12 +170,12 @@ $("#dates_from").flatpickr({
 
             onChange: function(selectedDates, dateStr, instance) {
             if (selectedDates.length != 0) {
-                item.set("dates_from", dateStr);
+                item.set("dates_return", dateStr);
                 if (from_field.value != '' && to_field.value != '' && item.has('dates_to')) {
                     tg.MainButton.setText("Поиск билетов");
 		            tg.MainButton.show(); } else {tg.MainButton.hide();}}
 		    else {
-		            delete item.delete('dates_to');
+		            delete item.delete('dates_return');
                 }
         var selectedDatesStr = selectedDates.reduce(function(acc, ele) {
 
