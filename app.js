@@ -14,13 +14,15 @@ const default_dates_return = getUrlParams()['dates_return'] && getUrlParams()['d
 // Заполняем поля ввода значениями из параметров
 function populateInputFields() {
   const urlParams = getUrlParams();
-  if (urlParams['from_field']) {document.getElementById('from_field').value = urlParams['from_field'];}
-  if (urlParams['to_field']) {document.getElementById('to_field').value = urlParams['to_field'];}
+  if (urlParams['from_field']) {document.getElementById('from_field').value = urlParams['from_field'];
+                                item.set("from_field", urlParams['from_field']);}
+  if (urlParams['to_field']) {document.getElementById('to_field').value = urlParams['to_field'];
+                                  item.set("to_field", urlParams['to_field']);}
+
   if (urlParams['dates_to']) {item.set("dates_to", urlParams['dates_to']);}
   if (urlParams['dates_return']) {item.set("dates_return", urlParams['dates_return']);}
   if (urlParams['repeat']) {tg.sendData(JSON.stringify(Object.fromEntries(item)));}
-  if (to_field.value != '' && item.has('dates_to') && from_field.value != '') {
-	item.set("to_field", to_field.value);
+  if (item.has('to_field') && item.has('dates_to') && item.has('to_field')) {
 	tg.MainButton.setText("Поиск билетов");
 		tg.MainButton.show();
 		}
