@@ -41,6 +41,178 @@ tg.MainButton.color = '#2cab37';
 
 
 
+
+const input_from_field = document.getElementById('from_field');
+const suggestionsBox_from_field = document.getElementById('suggestions_from_field');
+let validSelection_from_field = false; // Переменная для отслеживания выбора
+const errorMessage_from_field = document.getElementById('error-message-from-field');
+
+input_from_field.addEventListener('input', async () => {
+    const query = input_from_field.value;
+
+    validSelection_from_field = false; // Сбрасываем выбор при вводе нового текста
+    errorMessage_from_field.style.display = 'none'; // Скрываем сообщение об ошибке
+
+    if (query.length < 1) {
+        suggestionsBox_from_field.style.display = 'none';
+        return;
+    }
+
+    try {
+        const response = await fetch(`https://suggest.aviasales.com/v2/places.json?locale=ru_RU&max=7&types[]=city&types[]=airport&term=${query}`);
+        const data = await response.json();
+
+        suggestionsBox_from_field.innerHTML = '';
+        const filteredSuggestions = data.filter(elem => elem.name.toLowerCase().includes(query.toLowerCase()));
+        filteredSuggestions.forEach(elem => {
+            const div = document.createElement('div');
+            div.textContent = `${elem.name} (${elem.code})`; // Отображаем имя и код
+            div.classList.add('suggestion-item');
+            div.classList.add('input-field-input');
+            div.onclick = () => {
+                input_from_field.value = elem.name; // Заполняем input именем
+                validSelection_from_field = true; // Устанавливаем выбор в true
+                suggestionsBox_from_field.style.display = 'none';
+                errorMessage_from_field.style.display = 'none'; // Скрываем сообщение об ошибке
+
+            };
+            suggestionsBox_from_field.appendChild(div);
+        });
+
+        suggestionsBox_from_field.style.display = filteredSuggestions.length > 0 ? 'block' : 'none';
+    } catch (error) {
+        console.error('Ошибка:', error);
+    }
+});
+
+
+
+input_from_field.parentElement.addEventListener('blur', () => {
+        if (!validSelection_from_field) {
+            input_from_field.value = ''; // Очищаем поле, если ничего не выбрано
+            errorMessage_from_field.style.display = 'block'; // Показываем сообщение об ошибке
+            errorMessage_from_field.classList.remove('fade-out'); // Убираем класс исчезновения
+            setTimeout(() => {
+                errorMessage_from_field.classList.add('fade-out'); // Добавляем класс для плавного исчезновения
+            }, 3000); // Ждем 3 секунды перед началом исчезновения
+        }
+    });
+
+input_from_field.addEventListener('blur', () => {
+        if (!validSelection_from_field) {
+            input_from_field.value = ''; // Очищаем поле, если ничего не выбрано
+            errorMessage_from_field.style.display = 'block'; // Показываем сообщение об ошибке
+            errorMessage_from_field.classList.remove('fade-out'); // Убираем класс исчезновения
+            setTimeout(() => {
+                errorMessage_from_field.classList.add('fade-out'); // Добавляем класс для плавного исчезновения
+            }, 3000); // Ждем 3 секунды перед началом исчезновения
+        }
+    });
+
+
+document.addEventListener('click', (event) => {
+    if (event.target !== input_from_field) {
+        suggestionsBox_from_field.style.display = 'none';
+    }
+});
+
+
+
+
+
+
+
+
+const input_to_field = document.getElementById('to_field');
+const suggestionsBox_to_field = document.getElementById('suggestions_to_field');
+let validSelection_to_field = false; // Переменная для отслеживания выбора
+const errorMessage_to_field = document.getElementById('error-message-to-field');
+
+input_to_field.addEventListener('input', async () => {
+    const query = input_to_field.value;
+
+    validSelection_to_field = false; // Сбрасываем выбор при вводе нового текста
+    errorMessage_to_field.style.display = 'none'; // Скрываем сообщение об ошибке
+
+    if (query.length < 1) {
+        suggestionsBox_to_field.style.display = 'none';
+        return;
+    }
+
+    try {
+        const response = await fetch(`https://suggest.aviasales.com/v2/places.json?locale=ru_RU&max=7&types[]=city&types[]=airport&term=${query}`);
+        const data = await response.json();
+
+        suggestionsBox_to_field.innerHTML = '';
+        const filteredSuggestions = data.filter(elem => elem.name.toLowerCase().includes(query.toLowerCase()));
+        filteredSuggestions.forEach(elem => {
+            const div = document.createElement('div');
+            div.textContent = `${elem.name} (${elem.code})`; // Отображаем имя и код
+            div.classList.add('suggestion-item');
+            div.classList.add('input-field-input');
+            div.onclick = () => {
+                input_to_field.value = elem.name; // Заполняем input именем
+                validSelection_to_field = true; // Устанавливаем выбор в true
+                suggestionsBox_to_field.style.display = 'none';
+                errorMessage_to_field.style.display = 'none'; // Скрываем сообщение об ошибке
+
+            };
+            suggestionsBox_to_field.appendChild(div);
+        });
+
+        suggestionsBox_to_field.style.display = filteredSuggestions.length > 0 ? 'block' : 'none';
+    } catch (error) {
+        console.error('Ошибка:', error);
+    }
+});
+
+
+
+input_to_field.parentElement.addEventListener('blur', () => {
+        if (!validSelection_to_field) {
+            input_to_field.value = ''; // Очищаем поле, если ничего не выбрано
+            errorMessage_to_field.style.display = 'block'; // Показываем сообщение об ошибке
+            errorMessage_to_field.classList.remove('fade-out'); // Убираем класс исчезновения
+            setTimeout(() => {
+                errorMessage_to_field.classList.add('fade-out'); // Добавляем класс для плавного исчезновения
+            }, 3000); // Ждем 3 секунды перед началом исчезновения
+        }
+    });
+
+input_to_field.addEventListener('blur', () => {
+        if (!validSelection_to_field) {
+            input_to_field.value = ''; // Очищаем поле, если ничего не выбрано
+            errorMessage_to_field.style.display = 'block'; // Показываем сообщение об ошибке
+            errorMessage_to_field.classList.remove('fade-out'); // Убираем класс исчезновения
+            setTimeout(() => {
+                errorMessage_to_field.classList.add('fade-out'); // Добавляем класс для плавного исчезновения
+            }, 3000); // Ждем 3 секунды перед началом исчезновения
+        }
+    });
+
+
+document.addEventListener('click', (event) => {
+    if (event.target !== input_to_field) {
+        suggestionsBox_to_field.style.display = 'none';
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var item = new Map();
 
 const from_field = document.getElementById("from_field");
