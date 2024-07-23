@@ -4,6 +4,7 @@ body {
 	font-size: 18px;
 	color: var(--tg-theme-text-color);
 	background: var(--tg-theme-bg-color);
+	position: relative;
 }
 
 .container {
@@ -70,7 +71,6 @@ body {
     user-select: none;
     box-sizing: inherit;
     position: relative;
-    display: flex;
     align-items: center;}
 
 .input-field-input {
@@ -389,9 +389,74 @@ line-height: 1.5;
     box-shadow: none;
 }
 
+#input-container {
+            position: relative; /* Устанавливаем относительное позиционирование для контейнера */
+        }
+
+#suggestions_to_field {
+    --border-color: #dfe1e5;
+    --input-search-background-color: #fff;
+    --input-search-border-color: #dfe1e5;
+    --border-radius: 10px;
+            display: none;
+            position: absolute; /* Устанавливаем абсолютное позиционирование для списка предложений */
+            background: white;
+            z-index: 1000;
+            width: calc(200% + 30px);
+            max-height: 200px; /* Максимальная высота списка */
+            overflow-y: auto; /* Прокрутка при превышении высоты */
+            left: calc(-100% - 30px);; /* Сдвигаем сообщение влево на 10 пикселей */
+                 }
+
+#suggestions_from_field {
+    --border-color: #dfe1e5;
+    --input-search-background-color: #fff;
+    --input-search-border-color: #dfe1e5;
+    --border-radius: 10px;
+            display: none;
+            position: absolute; /* Устанавливаем абсолютное позиционирование для списка предложений */
+            background: white;
+            z-index: 1000;
+            width: calc(200% + 30px);
+            max-height: 200px; /* Максимальная высота списка */
+            overflow-y: auto; /* Прокрутка при превышении высоты */
+            box-sizing: border-box;
+                 }
+        .suggestion-item {
+            line-height: 1.5;
+            text-align: left;
+            margin: 5px 0px 0px;
+            cursor: pointer;
+            max-width: 390px; /* Чтобы список занимал всю ширину родителя */
 
 
+        }
+        .suggestion-item:hover {
+            background-color: #f0f0f0;
+        }
 
+
+        .error {
+            color: var(--tg-theme-text-color);
+            background: white;
+            z-index: 200;
+            position: absolute; /* Абсолютное позиционирование */
+            top: 100%; /* Сразу под контейнером */
+            left: 0;
+            width: 330px; /* Чтобы список занимал всю ширину родителя */
+            opacity: 1; /* Начальная непрозрачность */
+            transition: opacity 0.5s ease-out; /* Плавный переход для исчезновения */
+            display: none; /* Скрываем сообщение по умолчанию */
+            margin-top: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Добавляем тень */
+        }
+        .error-to-field {
+            left: calc(-100% - 30px);; /* Сдвигаем сообщение влево на 10 пикселей */
+            width: calc(200% + 30px);
+        }
+        .error.fade-out {
+            opacity: 0; /* Непрозрачность 0 для исчезновения */
+        }
 
 
 
