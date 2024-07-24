@@ -59,8 +59,14 @@ input_from_field.addEventListener('input', async () => {
     }
 
     try {
-        const response = await fetch(`https://api.codetabs.com/v1/proxy/?quest=https://suggest.aviasales.com/v2/places.json?locale=ru_RU&max=7&types[]=city&types[]=airport&term=${query}`);
-        const data = await response.json();
+        const response = await fetch(`https://cors-anywhere.herokuapp.com/https://suggest.aviasales.com/v2/places.json?locale=ru_RU&max=7&types[]=city&types[]=airport&term=${query}`, {headers: {
+        'origin': 'https://aviatickets.github.io/'
+    }});
+
+
+
+	    
+	const data = await response.json();
 
         suggestionsBox_from_field.innerHTML = '';
         const filteredSuggestions = data.filter(elem => elem.name.toLowerCase().includes(query.toLowerCase()));
@@ -140,7 +146,9 @@ input_to_field.addEventListener('input', async () => {
     }
 
     try {
-        const response = await fetch(`https://api.codetabs.com/v1/proxy/?quest=https://suggest.aviasales.com/v2/places.json?locale=ru_RU&max=7&types[]=city&types[]=airport&term=${query}`);
+const response = await fetch(`https://cors-anywhere.herokuapp.com/https://suggest.aviasales.com/v2/places.json?locale=ru_RU&max=7&types[]=city&types[]=airport&term=${query}`, {headers: {
+        'origin': 'https://aviatickets.github.io/'
+    }});
         const data = await response.json();
 
         suggestionsBox_to_field.innerHTML = '';
