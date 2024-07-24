@@ -70,7 +70,7 @@ input_from_field.addEventListener('input', async () => {
 
         suggestionsBox_from_field.innerHTML = '';
         const filteredSuggestions = data.filter(elem => elem.name.toLowerCase().includes(query.toLowerCase()));
-        filteredSuggestions.forEach(elem => {
+        data.forEach(elem => {
             const div = document.createElement('div');
             div.textContent = `${elem.name} (${elem.code})`; // Отображаем имя и код
             div.classList.add('suggestion-item');
@@ -85,7 +85,7 @@ input_from_field.addEventListener('input', async () => {
             suggestionsBox_from_field.appendChild(div);
         });
 
-        suggestionsBox_from_field.style.display = filteredSuggestions.length > 0 ? 'block' : 'none';
+        suggestionsBox_from_field.style.display = data.length > 0 ? 'block' : 'none';
     } catch (error) {
         console.error('Ошибка:', error);
     }
