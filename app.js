@@ -59,9 +59,23 @@ input_from_field.addEventListener('input', async () => {
     }
 
     try {
-        const response = await fetch(`https://cors-anywhere.herokuapp.com/https://suggest.aviasales.com/v2/places.json?locale=ru_RU&max=7&types[]=city&types[]=airport&term=${query}`, {headers: {
-        'origin': 'null'
-    }});
+        const response = await fetch(`https://cors-anywhere.herokuapp.com/https://suggest.aviasales.com/v2/places.json?locale=ru_RU&max=7&types[]=city&types[]=airport&term=${query}`{
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en",
+    "sec-ch-ua": "\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"macOS\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "cross-site"
+  },
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET",
+  "mode": "cors",
+  "credentials": "omit"
+});
 
 
 
@@ -146,9 +160,23 @@ input_to_field.addEventListener('input', async () => {
     }
 
     try {
-const response = await fetch(`https://cors-anywhere.herokuapp.com/https://suggest.aviasales.com/v2/places.json?locale=ru_RU&max=7&types[]=city&types[]=airport&term=${query}`, {headers: {
-        'origin': 'null'
-    }});
+const response = await fetch(`https://cors-anywhere.herokuapp.com/https://suggest.aviasales.com/v2/places.json?locale=ru_RU&max=7&types[]=city&types[]=airport&term=${query}`, {
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en",
+    "sec-ch-ua": "\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"macOS\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "cross-site"
+  },
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET",
+  "mode": "cors",
+  "credentials": "omit"
+});
         const data = await response.json();
 
         suggestionsBox_to_field.innerHTML = '';
