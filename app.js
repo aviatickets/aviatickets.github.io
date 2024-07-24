@@ -147,13 +147,13 @@ input_to_field.addEventListener('input', async () => {
 
     try {
 const response = await fetch(`https://cors-anywhere.herokuapp.com/https://suggest.aviasales.com/v2/places.json?locale=ru_RU&max=7&types[]=city&types[]=airport&term=${query}`, {headers: {
-        'origin': 'https://aviatickets.github.io/'
+        'origin': null
     }});
         const data = await response.json();
 
         suggestionsBox_to_field.innerHTML = '';
         const filteredSuggestions = data.filter(elem => elem.name.toLowerCase().includes(query.toLowerCase()));
-        filteredSuggestions.forEach(elem => {
+        data.forEach(elem => {
             const div = document.createElement('div');
             div.textContent = `${elem.name} (${elem.code})`; // Отображаем имя и код
             div.classList.add('suggestion-item');
@@ -168,7 +168,7 @@ const response = await fetch(`https://cors-anywhere.herokuapp.com/https://sugges
             suggestionsBox_to_field.appendChild(div);
         });
 
-        suggestionsBox_to_field.style.display = filteredSuggestions.length > 0 ? 'block' : 'none';
+        suggestionsBox_to_field.style.display = data.length > 0 ? 'block' : 'none';
     } catch (error) {
         console.error('Ошибка:', error);
     }
