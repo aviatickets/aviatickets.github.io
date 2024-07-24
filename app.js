@@ -59,7 +59,7 @@ input_from_field.addEventListener('input', async () => {
     }
 
     try {
-        const response = await fetch(`https://corsproxy.io/?https://suggest.aviasales.com/v2/places.json?locale=ru_RU&max=7&types[]=city&types[]=airport&term=${query}`);
+        const response = await fetch(`https://api.codetabs.com/v1/proxy/?quest=https://suggest.aviasales.com/v2/places.json?locale=ru_RU&max=7&types[]=city&types[]=airport&term=${query}`);
         const data = await response.json();
 
         suggestionsBox_from_field.innerHTML = '';
@@ -140,7 +140,7 @@ input_to_field.addEventListener('input', async () => {
     }
 
     try {
-        const response = await fetch(`https://corsproxy.io/?https://suggest.aviasales.com/v2/places.json?locale=ru_RU&max=7&types[]=city&types[]=airport&term=${query}`);
+        const response = await fetch(`https://api.codetabs.com/v1/proxy/?quest=https://suggest.aviasales.com/v2/places.json?locale=ru_RU&max=7&types[]=city&types[]=airport&term=${query}`);
         const data = await response.json();
 
         suggestionsBox_to_field.innerHTML = '';
