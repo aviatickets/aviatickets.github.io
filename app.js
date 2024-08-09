@@ -1,3 +1,6 @@
+var item = new Map();
+item.set("exchange", document.querySelector('#exchange').value);
+item.set("time-exchange", document.querySelector('#time-exchange').value);
 // Получаем параметры из URL-адреса
 function getUrlParams() {
   const params = new URLSearchParams(window.location.search);
@@ -16,13 +19,24 @@ function populateInputFields() {
   const urlParams = getUrlParams();
   if (urlParams['from_field']) {document.getElementById('from_field').value = urlParams['from_field'];
                                 item.set("from_field", urlParams['from_field']);}
+  if (urlParams['from_code_field']) {item.set("from_code_field", urlParams['from_code_field']);}
+  if (urlParams['to_code_field']) {item.set("to_code_field", urlParams['to_code_field']);}
+
   if (urlParams['to_field']) {document.getElementById('to_field').value = urlParams['to_field'];
                                   item.set("to_field", urlParams['to_field']);}
+
+  if (urlParams['exchange']) {
+                              document.querySelector('#exchange').value = urlParams['exchange'];
+                                  item.set("exchange", urlParams['exchange']);}
+  if (urlParams['time-exchange']) {
+                              document.querySelector('#time-exchange').value = urlParams['time-exchange'];
+                                  item.set("time-exchange", urlParams['time-exchange']);}
+
 
   if (urlParams['dates_to']) {item.set("dates_to", urlParams['dates_to']);}
   if (urlParams['dates_return']) {item.set("dates_return", urlParams['dates_return']);}
   if (urlParams['repeat']) {tg.sendData(JSON.stringify(Object.fromEntries(item)));}
-  if (item.has('to_field') && item.has('dates_to') && item.has('to_field')) {
+  if (item.has('from_field') && item.has('dates_to') && item.has('to_field')) {
 	tg.MainButton.setText("Поиск билетов");
 		tg.MainButton.show();
 		}
@@ -79,7 +93,7 @@ input_from_field.addEventListener('input', async () => {
 
 
 
-	    
+
 	const data = await response.json();
 
         suggestionsBox_from_field.innerHTML = '';
@@ -91,6 +105,8 @@ input_from_field.addEventListener('input', async () => {
             div.classList.add('input-field-input');
             div.onclick = () => {
                 input_from_field.value = elem.name; // Заполняем input именем
+                item.set("from_field", elem.name);
+                item.set("from_code_field", elem.code);
                 validSelection_from_field = true; // Устанавливаем выбор в true
                 suggestionsBox_from_field.style.display = 'none';
                 errorMessage_from_field.style.display = 'none'; // Скрываем сообщение об ошибке
@@ -110,6 +126,8 @@ input_from_field.addEventListener('input', async () => {
 input_from_field.parentElement.addEventListener('blur', () => {
         if (!validSelection_from_field) {
             input_from_field.value = ''; // Очищаем поле, если ничего не выбрано
+            item.set("from_field", '');
+            item.set("from_code_field", '');
             errorMessage_from_field.style.display = 'block'; // Показываем сообщение об ошибке
             errorMessage_from_field.classList.remove('fade-out'); // Убираем класс исчезновения
             setTimeout(() => {
@@ -121,6 +139,8 @@ input_from_field.parentElement.addEventListener('blur', () => {
 input_from_field.addEventListener('blur', () => {
         if (!validSelection_from_field) {
             input_from_field.value = ''; // Очищаем поле, если ничего не выбрано
+            item.set("from_field", '');
+            item.set("from_code_field", '');
             errorMessage_from_field.style.display = 'block'; // Показываем сообщение об ошибке
             errorMessage_from_field.classList.remove('fade-out'); // Убираем класс исчезновения
             setTimeout(() => {
@@ -188,6 +208,8 @@ const response = await fetch(`https://cors-anywhere.herokuapp.com/https://sugges
             div.classList.add('input-field-input');
             div.onclick = () => {
                 input_to_field.value = elem.name; // Заполняем input именем
+                item.set("to_field", elem.name);
+                item.set("to_code_field", elem.code);
                 validSelection_to_field = true; // Устанавливаем выбор в true
                 suggestionsBox_to_field.style.display = 'none';
                 errorMessage_to_field.style.display = 'none'; // Скрываем сообщение об ошибке
@@ -207,6 +229,8 @@ const response = await fetch(`https://cors-anywhere.herokuapp.com/https://sugges
 input_to_field.parentElement.addEventListener('blur', () => {
         if (!validSelection_to_field) {
             input_to_field.value = ''; // Очищаем поле, если ничего не выбрано
+            item.set("to_field", '');
+            item.set("to_code_field", '');
             errorMessage_to_field.style.display = 'block'; // Показываем сообщение об ошибке
             errorMessage_to_field.classList.remove('fade-out'); // Убираем класс исчезновения
             setTimeout(() => {
@@ -218,6 +242,8 @@ input_to_field.parentElement.addEventListener('blur', () => {
 input_to_field.addEventListener('blur', () => {
         if (!validSelection_to_field) {
             input_to_field.value = ''; // Очищаем поле, если ничего не выбрано
+            item.set("to_field", '');
+            item.set("to_code_field", '');
             errorMessage_to_field.style.display = 'block'; // Показываем сообщение об ошибке
             errorMessage_to_field.classList.remove('fade-out'); // Убираем класс исчезновения
             setTimeout(() => {
@@ -249,11 +275,19 @@ document.addEventListener('click', (event) => {
 
 
 
-var item = new Map();
+
+
 
 const from_field = document.getElementById("from_field");
 const to_field = document.getElementById("to_field");
-                    const FLATPICKR_CUSTOM_YEAR_SELECT = 'flatpickr-custom-year-select';
+const exchange = document.getElementById("exchange");
+const time_exchange = document.getElementById("time-exchange");
+    if (exchange.value == 0) {
+		time_exchange.selectedIndex = -1;
+		delete item.delete('time-exchange');
+
+	}
+const FLATPICKR_CUSTOM_YEAR_SELECT = 'flatpickr-custom-year-select';
 
 $("#dates_to").flatpickr({
 
@@ -434,30 +468,33 @@ to_field.addEventListener("input", function(){
 });
 
 
+exchange.addEventListener("change", function() {
+    item.set("exchange", exchange.value);
+	if (exchange.value === '0') {
+                time_exchange.disabled = true;
+		        time_exchange.value = 0;
+		        delete item.delete('time-exchange');
+
+            } else {
+                time_exchange.disabled = false;
+                time_exchange.selectedIndex = 0; // Сбрасываем выбор во втором select
+                item.set("time-exchange", time_exchange.value);
+
+            }
+
+
+
+});
+
+time_exchange.addEventListener("change", function() {
+    item.set("time-exchange", time_exchange.value);
+});
+
+
 Telegram.WebApp.onEvent("mainButtonClicked", function(){
     item.set("from_field", from_field.value);
     item.set("to_field", to_field.value);
 
 	tg.sendData(JSON.stringify(Object.fromEntries(item)));
 });
-
-
-let usercard = document.getElementById("usercard");
-
-let p = document.createElement("p");
-
-p.innerText = `${tg.initDataUnsafe.user.first_name}
-${tg.initDataUnsafe.user.last_name}`;
-
-usercard.appendChild(p);
-
-
-
-
-
-
-
-
-
-
 
