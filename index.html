@@ -36,7 +36,9 @@
 
                 <input class="input-field-input" id="from_field" placeholder="Москва" autocomplete="off">
                 <div id="suggestions_from_field"></div>
-                <div class="error input-field-input" id="error-message-from-field">Пожалуйста, выберите предложение из списка.</div>
+                <div class="error input-field-input" id="error-message-from-field">Пожалуйста, выберите предложение из
+                    списка.
+                </div>
                 <div class="input-field-border"></div>
                 <label>
                     <span class="i18n">Откуда</span>
@@ -47,7 +49,9 @@
             <div class="input-field">
                 <input class="input-field-input" id="to_field" placeholder="Турция" autocomplete="off">
                 <div id="suggestions_to_field"></div>
-                <div class="error error-to-field input-field-input" id="error-message-to-field">Пожалуйста, выберите предложение из списка.</div>
+                <div class="error error-to-field input-field-input" id="error-message-to-field">Пожалуйста, выберите
+                    предложение из списка.
+                </div>
 
                 <div class="input-field-border"></div>
                 <label>
@@ -63,9 +67,6 @@
                 </label>
                 <div class="date_time_picker d-none " id="dates_to" style="width: auto !important;"></div>
                 <script>
-
-
-
 
 
                 </script>
@@ -84,7 +85,52 @@
 
             </div>
         </div>
+
+        <div class="item">
+            <div class="input-field">
+
+                    <select id="exchange" class="input-field-input">
+                        <option value="0">Без пересадок</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                <div class="input-field-border"></div>
+                <label>
+                    <span class="i18n">Пересадки</span>
+                </label>
+            </div>
+
+        </div>
+
+        <div class="item">
+            <div class="input-field">
+
+                    <select id="time-exchange"  disabled class="input-field-input">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                <div class="input-field-border"></div>
+                <label>
+                    <span class="i18n">Длительность</span>
+                </label>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
     </div>
+
+
+
 
 </div>
 
