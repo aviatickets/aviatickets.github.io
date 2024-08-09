@@ -75,7 +75,7 @@ body {
 
 .input-field-input {
     font-weight: 400;
-    font-size: 16px;
+    font-size: 15px;
     -webkit-font-smoothing: antialiased;
     -webkit-text-size-adjust: 100%;
     font-family: var(--font-regular);
@@ -458,6 +458,9 @@ line-height: 1.5;
             opacity: 0; /* Непрозрачность 0 для исчезновения */
         }
 
-
-
-
+select {
+            -webkit-appearance: none; /* Убирает стрелочку в Safari */
+            -moz-appearance: none; /* Убирает стрелочку в Firefox */
+            appearance: none; /* Убирает стрелочку в других браузерах */
+            padding: 10px; /* Добавляем отступы */
+        }
