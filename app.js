@@ -484,7 +484,7 @@ exchange.addEventListener("change", function() {
 
 
 
-});
+}); 
 
 time_exchange.addEventListener("change", function() {
     item.set("time-exchange", time_exchange.value);
