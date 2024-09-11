@@ -357,7 +357,7 @@ $("#dates_to").flatpickr({
             return acc;
         }, '');
         instance.set('enable', [function(date) {
-            if (selectedDates.length >= 8) {
+            if (selectedDates.length >= 15) {
                 var currDateStr = instance.formatDate(date, "d.m.Y")
                 var x = selectedDatesStr.indexOf(currDateStr);
                 return x != -1;
@@ -434,7 +434,7 @@ $("#dates_return").flatpickr({
             return acc;
         }, '');
         instance.set('enable', [function(date) {
-            if (selectedDates.length >= 8) {
+            if (selectedDates.length >= 15) {
                 var currDateStr = instance.formatDate(date, "d.m.Y")
                 var x = selectedDatesStr.indexOf(currDateStr);
                 return x != -1;
