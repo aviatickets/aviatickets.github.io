@@ -467,7 +467,12 @@ to_field.addEventListener("input", function(){
 		}
 });
 
+if (exchange.value != '0') {
+                time_exchange.disabled = false;
+                time_exchange.selectedIndex = 0; // Сбрасываем выбор во втором select
+                item.set("time-exchange", time_exchange.value);
 
+            }
 exchange.addEventListener("change", function() {
     item.set("exchange", exchange.value);
 	if (exchange.value === '0') {
