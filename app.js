@@ -30,7 +30,9 @@ function populateInputFields() {
                                   item.set("exchange", urlParams['exchange']);}
   if (urlParams['time-exchange']) {
                               document.querySelector('#time-exchange').value = urlParams['time-exchange'];
-                                  item.set("time-exchange", urlParams['time-exchange']);}
+                                  item.set("time-exchange", urlParams['time-exchange']);
+  				document.querySelector('#time-exchange').disabled = false;
+  }
 
 
   if (urlParams['dates_to']) {item.set("dates_to", urlParams['dates_to']);}
@@ -40,6 +42,7 @@ function populateInputFields() {
 	tg.MainButton.setText("Поиск билетов");
 		tg.MainButton.show();
 		}
+
 }
 
 // Вызываем функцию при загрузке страницы
@@ -287,11 +290,7 @@ const time_exchange = document.getElementById("time-exchange");
 		delete item.delete('time-exchange');
 
 	}
-    else{
-                time_exchange.disabled = false;
-                item.set("time-exchange", time_exchange.value);
-
-            }
+    
 const FLATPICKR_CUSTOM_YEAR_SELECT = 'flatpickr-custom-year-select';
 
 $("#dates_to").flatpickr({
