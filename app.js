@@ -289,7 +289,6 @@ const time_exchange = document.getElementById("time-exchange");
 	}
     else{
                 time_exchange.disabled = false;
-                time_exchange.selectedIndex = time_exchange.value; 
                 item.set("time-exchange", time_exchange.value);
 
             }
