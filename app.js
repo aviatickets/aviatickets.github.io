@@ -100,16 +100,15 @@ input_from_field.addEventListener('input', async () => {
 	const data = await response.json();
 
         suggestionsBox_from_field.innerHTML = '';
-        const filteredSuggestions = data.filter(elem => elem.name.toLowerCase().includes(query.toLowerCase()));
         data.forEach(elem => {
             const div = document.createElement('div');
-            div.textContent = `${elem.name} (${elem.code})`; // Отображаем имя и код
+            div.textContent = `${elem.title} (${elem.slug})`; // Отображаем имя и код
             div.classList.add('suggestion-item');
             div.classList.add('input-field-input');
             div.onclick = () => {
-                input_from_field.value = elem.name; // Заполняем input именем
-                item.set("from_field", elem.name);
-                item.set("from_code_field", elem.code);
+                input_from_field.value = elem.title; // Заполняем input именем
+                item.set("from_field", elem.title);
+                item.set("from_code_field", elem.slug);
                 validSelection_from_field = true; // Устанавливаем выбор в true
                 suggestionsBox_from_field.style.display = 'none';
                 errorMessage_from_field.style.display = 'none'; // Скрываем сообщение об ошибке
@@ -203,16 +202,15 @@ const response = await fetch(`https://suggest.travelpayouts.com/search?service=a
         const data = await response.json();
 
         suggestionsBox_to_field.innerHTML = '';
-        const filteredSuggestions = data.filter(elem => elem.name.toLowerCase().includes(query.toLowerCase()));
         data.forEach(elem => {
             const div = document.createElement('div');
-            div.textContent = `${elem.name} (${elem.code})`; // Отображаем имя и код
+            div.textContent = `${elem.title} (${elem.slug})`; // Отображаем имя и код
             div.classList.add('suggestion-item');
             div.classList.add('input-field-input');
             div.onclick = () => {
-                input_to_field.value = elem.name; // Заполняем input именем
-                item.set("to_field", elem.name);
-                item.set("to_code_field", elem.code);
+                input_to_field.value = elem.title; // Заполняем input именем
+                item.set("to_field", elem.title);
+                item.set("to_code_field", elem.slug);
                 validSelection_to_field = true; // Устанавливаем выбор в true
                 suggestionsBox_to_field.style.display = 'none';
                 errorMessage_to_field.style.display = 'none'; // Скрываем сообщение об ошибке
