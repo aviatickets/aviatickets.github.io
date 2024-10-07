@@ -76,7 +76,7 @@ input_from_field.addEventListener('input', async () => {
     }
 
     try {
-        const response = await fetch(`https://cors-anywhere.herokuapp.com/https://suggest.aviasales.com/v2/places.json?locale=ru_RU&max=7&types[]=city&types[]=airport&term=${query}`, {
+        const response = await fetch(`https://suggest.travelpayouts.com/search?service=aviasales&term=${query}&locale=ru`, {
   "headers": {
     "accept": "*/*",
     "accept-language": "en",
@@ -183,7 +183,7 @@ input_to_field.addEventListener('input', async () => {
     }
 
     try {
-const response = await fetch(`https://cors-anywhere.herokuapp.com/https://suggest.aviasales.com/v2/places.json?locale=ru_RU&max=7&types[]=city&types[]=airport&term=${query}`, {
+const response = await fetch(`https://suggest.travelpayouts.com/search?service=aviasales&term=${query}&locale=ru`, {
   "headers": {
     "accept": "*/*",
     "accept-language": "en",
