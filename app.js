@@ -127,6 +127,7 @@ input_from_field.addEventListener('input', async () => {
 
 input_from_field.parentElement.addEventListener('blur', () => {
         if (!validSelection_from_field) {
+	    tg.MainButton.hide();
             input_from_field.value = ''; // Очищаем поле, если ничего не выбрано
             item.set("from_field", '');
             item.set("from_code_field", '');
@@ -140,6 +141,7 @@ input_from_field.parentElement.addEventListener('blur', () => {
 
 input_from_field.addEventListener('blur', () => {
         if (!validSelection_from_field) {
+	    tg.MainButton.hide();
             input_from_field.value = ''; // Очищаем поле, если ничего не выбрано
             item.set("from_field", '');
             item.set("from_code_field", '');
@@ -229,6 +231,7 @@ const response = await fetch(`https://suggest.travelpayouts.com/search?service=a
 
 input_to_field.parentElement.addEventListener('blur', () => {
         if (!validSelection_to_field) {
+	    tg.MainButton.hide();
             input_to_field.value = ''; // Очищаем поле, если ничего не выбрано
             item.set("to_field", '');
             item.set("to_code_field", '');
@@ -242,6 +245,7 @@ input_to_field.parentElement.addEventListener('blur', () => {
 
 input_to_field.addEventListener('blur', () => {
         if (!validSelection_to_field) {
+	    tg.MainButton.hide();
             input_to_field.value = ''; // Очищаем поле, если ничего не выбрано
             item.set("to_field", '');
             item.set("to_code_field", '');
