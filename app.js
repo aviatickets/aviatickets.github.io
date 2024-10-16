@@ -132,6 +132,7 @@ input_from_field.parentElement.addEventListener('blur', () => {
             item.set("from_code_field", '');
             errorMessage_from_field.style.display = 'block'; // Показываем сообщение об ошибке
             errorMessage_from_field.classList.remove('fade-out'); // Убираем класс исчезновения
+	    
             setTimeout(() => {
                 errorMessage_from_field.classList.add('fade-out'); // Добавляем класс для плавного исчезновения
             }, 3000); // Ждем 3 секунды перед началом исчезновения
@@ -145,6 +146,7 @@ input_from_field.addEventListener('blur', () => {
             item.set("from_code_field", '');
             errorMessage_from_field.style.display = 'block'; // Показываем сообщение об ошибке
             errorMessage_from_field.classList.remove('fade-out'); // Убираем класс исчезновения
+            tg.MainButton.hide();
             setTimeout(() => {
                 errorMessage_from_field.classList.add('fade-out'); // Добавляем класс для плавного исчезновения
             }, 3000); // Ждем 3 секунды перед началом исчезновения
