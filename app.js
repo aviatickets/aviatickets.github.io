@@ -66,7 +66,7 @@ const errorMessage_from_field = document.getElementById('error-message-from-fiel
 
 input_from_field.addEventListener('input', async () => {
     const query = input_from_field.value;
-
+    tg.MainButton.hide();
     validSelection_from_field = false; // Сбрасываем выбор при вводе нового текста
     errorMessage_from_field.style.display = 'none'; // Скрываем сообщение об ошибке
 
