@@ -418,11 +418,11 @@ line-height: 1.5;
             left: calc(-100% - 30px);; /* Сдвигаем сообщение влево на 10 пикселей */
                  }
 
-.flatpickr-day.nextMonthDay{
+.flatpickr-day{
 	font-weight: bold;
 }
-.flatpickr-day.prevMonthDay{
-	font-weight: bold;
+.flatpickr-day.flatpickr-disabled{
+	font-weight: 400;
 }
 
 #suggestions_from_field {
