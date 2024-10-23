@@ -81,9 +81,9 @@ body {
     --body-background-color-rgb: 255, 255, 255;
     --background-color-true: #f4f4f5;
     --background-color: var(--background-color-true);
-    --border-color: #dfe1e5;
+    --border-color: rgb(37, 47, 74);
     --input-search-background-color: #fff;
-    --input-search-border-color: #dfe1e5;
+    --input-search-border-color: rgb(37, 47, 74);
     --height: 54px;
     --border-radius: 10px;
     --padding: 1rem;
@@ -242,12 +242,12 @@ label {
     --body-background-color-rgb: 255, 255, 255;
     --background-color-true: #f4f4f5;
     --background-color: var(--background-color-true);
-    --border-color: #dfe1e5;
+    --border-color: rgb(37, 47, 74);
     --scrollbar-color: rgba(0, 0, 0, .2);
     --section-box-shadow-color: rgba(0, 0, 0, .06);
     --menu-box-shadow-color: rgba(0, 0, 0, .15);
     --input-search-background-color: #fff;
-    --input-search-border-color: #dfe1e5;
+    --input-search-border-color: rgb(37, 47, 74);
     --secondary-color: #c4c9cc;
     --warning-color: #fed85a;
     --avatar-online-color: var(--primary-color);
@@ -370,9 +370,9 @@ line-height: 1.5;
   width: auto !important;
 
 
-    --border-color: #dfe1e5;
+    --border-color: rgb(37, 47, 74);
     --input-search-background-color: #fff;
-    --input-search-border-color: #dfe1e5;
+    --input-search-border-color: rgb(37, 47, 74);
     --height: 54px;
     --border-radius: 10px;
     --padding-horizontal: 1rem;
@@ -388,9 +388,9 @@ line-height: 1.5;
         }
 
 #suggestions_to_field {
-    --border-color: #dfe1e5;
+    --border-color: rgb(37, 47, 74);
     --input-search-background-color: #fff;
-    --input-search-border-color: #dfe1e5;
+    --input-search-border-color: rgb(37, 47, 74);;
     --border-radius: 10px;
             display: none;
             position: absolute; /* Устанавливаем абсолютное позиционирование для списка предложений */
@@ -403,9 +403,9 @@ line-height: 1.5;
                  }
 
 #suggestions_from_field {
-    --border-color: #dfe1e5;
+    --border-color: rgb(37, 47, 74);
     --input-search-background-color: #fff;
-    --input-search-border-color: #dfe1e5;
+    --input-search-border-color: rgb(37, 47, 74);
     --border-radius: 10px;
             display: none;
             position: absolute; /* Устанавливаем абсолютное позиционирование для списка предложений */
