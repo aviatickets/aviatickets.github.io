@@ -398,6 +398,7 @@ line-height: 1.5;
 .flatpickr-day {
 	color: rgb(37, 47, 74);}
 
+
 #input-container {
             position: relative; /* Устанавливаем относительное позиционирование для контейнера */
         }
@@ -417,7 +418,12 @@ line-height: 1.5;
             left: calc(-100% - 30px);; /* Сдвигаем сообщение влево на 10 пикселей */
                  }
 
-.flatpickr-disabled{color: var(--bs-body-bg);}
+.flatpickr-day.nextMonthDay{
+	font-weight: bold;
+}
+.flatpickr-day.prevMonthDay{
+	font-weight: bold;
+}
 
 #suggestions_from_field {
     --border-color: rgb(37, 47, 74);
