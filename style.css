@@ -391,7 +391,7 @@ line-height: 1.5;
     
 }
 
-.flatpickr-current-month
+.flatpickr-current-month .flatpickr-monthDropdown-months
 {font-weight: bold;
 	color: rgb(37, 47, 74);}
 
