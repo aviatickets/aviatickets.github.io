@@ -417,7 +417,7 @@ line-height: 1.5;
             left: calc(-100% - 30px);; /* Сдвигаем сообщение влево на 10 пикселей */
                  }
 
-.flatpickr-disabled{display: none;}
+.flatpickr-disabled{color: var(--bs-body-bg);}
 
 #suggestions_from_field {
     --border-color: rgb(37, 47, 74);
