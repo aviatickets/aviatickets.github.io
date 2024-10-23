@@ -383,6 +383,9 @@ line-height: 1.5;
     box-shadow: none;
 }
 
+.flatpickr-day {
+	color: rgb(37, 47, 74);}
+
 #input-container {
             position: relative; /* Устанавливаем относительное позиционирование для контейнера */
         }
