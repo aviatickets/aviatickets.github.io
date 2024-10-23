@@ -417,6 +417,8 @@ line-height: 1.5;
             left: calc(-100% - 30px);; /* Сдвигаем сообщение влево на 10 пикселей */
                  }
 
+.flatpickr-disabled{display: none;}
+
 #suggestions_from_field {
     --border-color: rgb(37, 47, 74);
     --input-search-background-color: #fff;
@@ -467,6 +469,7 @@ line-height: 1.5;
         .error.fade-out {
             opacity: 0; /* Непрозрачность 0 для исчезновения */
         }
+	
 
 select {
             -webkit-appearance: none; /* Убирает стрелочку в Safari */
