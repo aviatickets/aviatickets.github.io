@@ -394,7 +394,9 @@ line-height: 1.5;
 .flatpickr-current-month .flatpickr-monthDropdown-months
 {font-weight: bold;
 	color: rgb(37, 47, 74);}
-
+.flatpickr-current-month{
+	padding: 11px 0 0 0;
+}
 .flatpickr-day {
 	color: rgb(37, 47, 74);}
 
@@ -423,6 +425,7 @@ line-height: 1.5;
 }
 .flatpickr-day.flatpickr-disabled{
 	font-weight: 400;
+	text-decoration: line-through;
 }
 
 #suggestions_from_field {
