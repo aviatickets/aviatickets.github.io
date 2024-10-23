@@ -358,7 +358,7 @@ line-height: 1.5;
 .i18n {
     margin: 100px 0;
     line-height: 1.5;
-    font-weight: 400;
+    font-weight: bold;
     font-family: var(--font-regular);
     color: rgb(37, 47, 74);
     pointer-events: none;
@@ -382,6 +382,18 @@ line-height: 1.5;
     padding: calc(var(--padding) - var(--border-width)) calc(var(--padding-horizontal) - var(--border-width));
     box-shadow: none;
 }
+
+.flatpickr-months .flatpickr-next-month svg, .flatpickr-months .flatpickr-prev-month svg {
+	color: rgb(37, 47, 74);
+	fill: rgb(37, 47, 74);
+	stroke: rgb(37, 47, 74);
+	stroke-width: 2;
+    
+}
+
+.flatpickr-current-month
+{font-weight: bold;
+	color: rgb(37, 47, 74);}
 
 .flatpickr-day {
 	color: rgb(37, 47, 74);}
