@@ -476,7 +476,7 @@ exchange.addEventListener("change", function() {
     item.set("exchange", exchange.value);
 	if (exchange.value === '0') {
                 time_exchange.disabled = true;
-		        time_exchange.value = 0;
+		        time_exchange.value = 'Без пересадок';
 		        delete item.delete('time-exchange');
 
             } else {
