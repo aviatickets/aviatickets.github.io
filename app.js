@@ -291,7 +291,8 @@ const time_exchange = document.getElementById("time-exchange");
 
 	}
     
-const FLATPICKR_CUSTOM_YEAR_SELECT = 'flatpickr-custom-year-select';
+const FLATPICKR_CUSTOM_YEAR_SELECT_FROM = 'flatpickr-custom-year-select-from';
+const FLATPICKR_CUSTOM_YEAR_SELECT_TO = 'flatpickr-custom-year-select-to';
 
 $("#dates_to").flatpickr({
 
@@ -333,13 +334,13 @@ $("#dates_to").flatpickr({
                     });
 
                     yearSelect.className = 'flatpickr-monthDropdown-months';
-                    yearSelect.id = FLATPICKR_CUSTOM_YEAR_SELECT;
+                    yearSelect.id = FLATPICKR_CUSTOM_YEAR_SELECT_TO;
                     yearSelect.value = instance.currentYearElement.value;
 
                     flatpickrYearElement.parentElement.appendChild(yearSelect);
                 },
                 onMonthChange: function (selectedDates, dateStr, instance) {
-                    document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT).value = '' + instance.currentYear;
+                    document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_TO).value = '' + instance.currentYear;
                 },
 
 
@@ -412,13 +413,13 @@ $("#dates_return").flatpickr({
                     });
 
                     yearSelect.className = 'flatpickr-monthDropdown-months';
-                    yearSelect.id = FLATPICKR_CUSTOM_YEAR_SELECT;
+                    yearSelect.id = FLATPICKR_CUSTOM_YEAR_SELECT_FROM;
                     yearSelect.value = instance.currentYearElement.value;
 
                     flatpickrYearElement.parentElement.appendChild(yearSelect);
                 },
                 onMonthChange: function (selectedDates, dateStr, instance) {
-                    document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT).value = '' + instance.currentYear;
+                    document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_FROM).value = '' + instance.currentYear;
                 },
 
 
