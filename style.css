@@ -444,6 +444,9 @@ line-height: 1.5;
             box-sizing: border-box;
                  }
         .suggestion-item {
+	    justify-content: flex-start;
+            align-items: center;
+            display: flex;
 	    background-color: #F9F9F9;
             line-height: 1.5;
             text-align: left;
@@ -459,8 +462,8 @@ line-height: 1.5;
 
 
         .error {
-            color: var(--tg-theme-text-color);
-            background: white;
+            color: rgb(37, 47, 74);
+            background: #F9F9F9;
             z-index: 200;
             position: absolute; /* Абсолютное позиционирование */
             top: 100%; /* Сразу под контейнером */
