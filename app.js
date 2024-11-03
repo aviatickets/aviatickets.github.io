@@ -112,6 +112,8 @@ input_from_field.addEventListener('input', async () => {
                 validSelection_from_field = true; // Устанавливаем выбор в true
                 suggestionsBox_from_field.style.display = 'none';
                 errorMessage_from_field.style.display = 'none'; // Скрываем сообщение об ошибке
+		tg.MainButton.setText("Поиск билетов");
+		tg.MainButton.show();
 
             };
             suggestionsBox_from_field.appendChild(div);
@@ -216,6 +218,8 @@ const response = await fetch(`https://suggest.travelpayouts.com/search?service=a
                 validSelection_to_field = true; // Устанавливаем выбор в true
                 suggestionsBox_to_field.style.display = 'none';
                 errorMessage_to_field.style.display = 'none'; // Скрываем сообщение об ошибке
+		tg.MainButton.setText("Поиск билетов");
+		tg.MainButton.show();
 
             };
             suggestionsBox_to_field.appendChild(div);
