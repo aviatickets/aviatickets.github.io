@@ -14,6 +14,17 @@ function getUrlParams() {
 const default_dates_to = getUrlParams()['dates_to'] && getUrlParams()['dates_to'].split(',').map(date => date.trim());
 const default_dates_return = getUrlParams()['dates_return'] && getUrlParams()['dates_return'].split(',').map(date => date.trim());
 
+const default_time_to_to_start = getUrlParams()['to_to_start']
+const default_time_to_to_end = getUrlParams()['to_to_end']
+const default_time_to_from_start = getUrlParams()['to_from_start']
+const default_time_to_from_end = getUrlParams()['to_from_end']
+
+const default_time_from_to_start = getUrlParams()['from_to_start']
+const default_time_from_to_end = getUrlParams()['from_to_end']
+const default_time_from_from_start = getUrlParams()['from_from_start']
+const default_time_from_from_end = getUrlParams()['from_from_end']
+
+
 // Заполняем поля ввода значениями из параметров
 function populateInputFields() {
   const urlParams = getUrlParams();
@@ -37,6 +48,19 @@ function populateInputFields() {
 
   if (urlParams['dates_to']) {item.set("dates_to", urlParams['dates_to']);}
   if (urlParams['dates_return']) {item.set("dates_return", urlParams['dates_return']);}
+
+
+if (urlParams['to_to_start']) {item.set("to_to_start", urlParams['to_to_start']);}
+if (urlParams['to_to_end']) {item.set("to_to_end", urlParams['to_to_end']);}
+if (urlParams['to_from_start']) {item.set("to_from_start", urlParams['to_from_start']);}
+if (urlParams['to_from_end']) {item.set("to_from_end", urlParams['to_from_end']);}
+if (urlParams['from_to_start']) {item.set("from_to_start", urlParams['from_to_start']);}
+if (urlParams['from_to_end']) {item.set("from_to_end", urlParams['from_to_end']);}
+if (urlParams['from_from_start']) {item.set("from_from_start", urlParams['from_from_start']);}
+if (urlParams['from_from_end']) {item.set("from_from_end", urlParams['from_from_end']);}
+
+
+	
   if (urlParams['repeat']) {tg.sendData(JSON.stringify(Object.fromEntries(item)));}
   if (item.has('from_field') && item.has('dates_to') && item.has('to_field')) {
 	tg.MainButton.setText("Поиск билетов");
@@ -498,6 +522,155 @@ exchange.addEventListener("change", function() {
 time_exchange.addEventListener("change", function() {
     item.set("time-exchange", time_exchange.value);
 });
+
+
+// Создаем новый элемент input
+    const tostartElement = document.createElement('strong');
+    const toendElement = document.createElement('strong');
+    tostartElement.textContent = 'Время вылета';
+    toendElement.textContent = 'Время прибытия';
+
+    const fromstartElement = document.createElement('strong');
+    const fromendElement = document.createElement('strong');
+
+    fromstartElement.textContent = 'Время вылета';
+    fromendElement.textContent = 'Время прибытия';
+
+    const inputtostartElement = document.createElement('input');
+    inputtostartElement.type = 'text';
+    inputtostartElement.className = 'js-range-slider-to-start';
+    inputtostartElement.name = 'my_range';
+    inputtostartElement.value = '';
+
+    const inputtoendElement = document.createElement('input');
+    inputtoendElement.type = 'text';
+    inputtoendElement.className = 'js-range-slider-to-end';
+    inputtoendElement.name = 'my_range';
+    inputtoendElement.value = '';
+
+    const inputfromstartElement = document.createElement('input');
+    inputfromstartElement.type = 'text';
+    inputfromstartElement.className = 'js-range-slider-from-start';
+    inputfromstartElement.name = 'my_range';
+    inputfromstartElement.value = '';
+
+    const inputfromendElement = document.createElement('input');
+    inputfromendElement.type = 'text';
+    inputfromendElement.className = 'js-range-slider-from-end';
+    inputfromendElement.name = 'my_range';
+    inputfromendElement.value = '';
+
+    const calendars = document.querySelectorAll('.flatpickr-calendar.animate.inline');
+
+    calendars[0].appendChild(tostartElement);
+    calendars[0].appendChild(inputtostartElement);
+    calendars[0].appendChild(toendElement);
+    calendars[0].appendChild(inputtoendElement);
+
+
+    calendars[1].appendChild(fromstartElement);
+    calendars[1].appendChild(inputfromstartElement);
+    calendars[1].appendChild(fromendElement);
+    calendars[1].appendChild(inputfromendElement);
+
+
+
+
+    $(".js-range-slider-to-start").ionRangeSlider({
+        skin: "round",
+        type: "double",
+        values: [
+            "00:00", "01:00", "02:00", "03:00", "04:00", "05:00",
+            "06:00", "07:00", "08:00", "09:00", "10:00", "11:00",
+            "12:00", "13:00", "14:00", "15:00", "16:00", "17:00",
+            "18:00", "19:00", "20:00", "21:00", "22:00", "23:00","24:00"
+        ],
+
+        from: false || default_time_to_to_start,
+        to: false || default_time_to_to_end,
+        grid: true,
+        drag_interval: true,
+
+        min_interval: 1,
+        onChange: function (data) {
+            item.set("to_to_start", data.from);
+            item.set("to_to_end", data.to);
+        }
+    });
+
+    $(".js-range-slider-to-end").ionRangeSlider({
+        skin: "round",
+        type: "double",
+        values: [
+            "00:00", "01:00", "02:00", "03:00", "04:00", "05:00",
+            "06:00", "07:00", "08:00", "09:00", "10:00", "11:00",
+            "12:00", "13:00", "14:00", "15:00", "16:00", "17:00",
+            "18:00", "19:00", "20:00", "21:00", "22:00", "23:00","24:00"
+        ],
+
+        from: false || default_time_to_from_start,
+        to: false || default_time_to_from_end,
+        grid: true,
+        grid_snap: true,
+        min: "00:00",
+        max: "24:00",
+        drag_interval: true,
+        min_interval: 1,
+        max_interval: null,
+        grid_num: 4,
+        onChange: function (data) {
+            item.set("to_from_start", data.from);
+            item.set("to_from_end", data.to);
+        }
+    });
+
+$(".js-range-slider-from-start").ionRangeSlider({
+        skin: "round",
+        type: "double",
+        values: [
+            "00:00", "01:00", "02:00", "03:00", "04:00", "05:00",
+            "06:00", "07:00", "08:00", "09:00", "10:00", "11:00",
+            "12:00", "13:00", "14:00", "15:00", "16:00", "17:00",
+            "18:00", "19:00", "20:00", "21:00", "22:00", "23:00","24:00"
+        ],
+
+        from: false || default_time_from_to_start,
+        to: false || default_time_from_to_end,
+        grid: true,
+        drag_interval: true,
+
+        min_interval: 1,
+        onChange: function (data) {
+            item.set("from_to_start", data.from);
+            item.set("from_to_end", data.to);
+        }
+    });
+
+    $(".js-range-slider-from-end").ionRangeSlider({
+        skin: "round",
+        type: "double",
+        values: [
+            "00:00", "01:00", "02:00", "03:00", "04:00", "05:00",
+            "06:00", "07:00", "08:00", "09:00", "10:00", "11:00",
+            "12:00", "13:00", "14:00", "15:00", "16:00", "17:00",
+            "18:00", "19:00", "20:00", "21:00", "22:00", "23:00","24:00"
+        ],
+
+        from: false || default_time_from_from_start,
+        to: false || default_time_from_from_end,
+        grid: true,
+        grid_snap: true,
+        min: "00:00",
+        max: "24:00",
+        drag_interval: true,
+        min_interval: 1,
+        max_interval: null,
+        grid_num: 4,
+        onChange: function (data) {
+            item.set("from_from_start", data.from);
+            item.set("from_from_end", data.to);
+        }
+    });
 
 
 Telegram.WebApp.onEvent("mainButtonClicked", function(){
