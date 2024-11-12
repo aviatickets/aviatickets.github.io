@@ -429,6 +429,38 @@ line-height: 1.5;
 	text-decoration: line-through;
 }
 
+.irs-with-grid {
+margin-left: 20px;
+margin-right: 20px;
+margin-bottom: 20px;
+}
+
+.irs--round .irs-from, .irs--round .irs-to, .irs--round .irs-single {
+    font-size: 14px;
+    line-height: 1;
+    text-shadow: none;
+    padding: 3px 5px;
+    background-color: var(--bs-component-active-bg);
+    color: white;
+    border-radius: 4px;
+}
+
+.irs--round .irs-handle {
+    top: 26px;
+    width: 24px;
+    height: 24px;
+    border: 4px solid var(--bs-component-active-bg);
+    background-color: white;
+    border-radius: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 255, 0.3);
+}
+
+.irs--round .irs-bar {
+    top: 36px;
+    height: 4px;
+    background-color: var(--bs-component-active-bg);
+}
+
 #suggestions_from_field {
     --border-color: rgb(37, 47, 74);
     --input-search-background-color: #fff;
