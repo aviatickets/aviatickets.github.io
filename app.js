@@ -369,6 +369,8 @@ $("#dates_to").flatpickr({
                 },
                 onMonthChange: function (selectedDates, dateStr, instance) {
                     document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_TO).value = '' + instance.currentYear;
+		    document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_FROM).value = '' + instance.currentYear;
+		    document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_FROM).parentElement.parentElement.children[0] = '' + instance.currentMonth;
                 },
 
 
