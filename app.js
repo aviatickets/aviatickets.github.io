@@ -377,7 +377,7 @@ $("#dates_to").flatpickr({
 		    document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_FROM).value = '' + instance.currentYear;
 
 
-                }
+                },
 		
 
 
