@@ -363,6 +363,7 @@ $("#dates_to").flatpickr({
 			document.querySelector("#dates_return")._flatpickr.currentYearElement.value = event.target['value'];
                         document.querySelector("#dates_return")._flatpickr.currentYear = parseInt(event.target['value']);
                         document.querySelector("#dates_return")._flatpickr.redraw();
+			document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_FROM).value = '' + instance.currentYear;
                     });
 
                     yearSelect.className = 'flatpickr-monthDropdown-months';
