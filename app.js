@@ -359,6 +359,10 @@ $("#dates_to").flatpickr({
                         flatpickrYearElement.value = event.target['value'];
                         instance.currentYear = parseInt(event.target['value']);
                         instance.redraw();
+
+			document.querySelector("#dates_return")._flatpickr.currentYearElement.value = event.target['value'];
+                        document.querySelector("#dates_return")._flatpickr.currentYear = parseInt(event.target['value']);
+                        document.querySelector("#dates_return")._flatpickr.redraw();
                     });
 
                     yearSelect.className = 'flatpickr-monthDropdown-months';
@@ -373,13 +377,8 @@ $("#dates_to").flatpickr({
 		    document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_FROM).value = '' + instance.currentYear;
 
 
-                },
-		onYearChange: function (selectedDates, dateStr, instance) {
-		    document.querySelector("#dates_return")._flatpickr.jumpToDate(new Date(instance.currentYear, instance.currentMonth));
-		    document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_FROM).value = '' + instance.currentYear;
-
-
-                },
+                }
+		
 
 
             onChange: function(selectedDates, dateStr, instance) {
