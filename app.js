@@ -370,7 +370,25 @@ $("#dates_to").flatpickr({
                 onMonthChange: function (selectedDates, dateStr, instance) {
                     document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_TO).value = '' + instance.currentYear;
 		    document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_FROM).value = '' + instance.currentYear;
-		    document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_FROM).parentElement.parentElement.children = document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_TO).parentElement.parentElement.children;
+
+
+	            const source = document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_TO).parentElement.parentElement.children[0];
+                    const target = document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_FROM).parentElement.parentElement.children[0];
+
+    while (target.firstChild) {
+        target.removeChild(target.firstChild);
+    }
+
+    // Перемещаем детей из source в target
+    while (source.firstChild) {
+        target.appendChild(source.firstChild);
+    }
+
+
+
+
+
+			
 		    document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_FROM).parentElement.parentElement.children[0].value = '' + instance.currentMonth;
                 },
 
