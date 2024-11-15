@@ -374,15 +374,13 @@ $("#dates_to").flatpickr({
 
 	            const source = document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_TO).parentElement.parentElement.children[0];
                     const target = document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_FROM).parentElement.parentElement.children[0];
-
     while (target.firstChild) {
         target.removeChild(target.firstChild);
     }
 
-    // Перемещаем детей из source в target
-    while (source.firstChild) {
-        target.appendChild(source.firstChild);
-    }
+    Array.from(source.children).forEach(child => {
+        target.appendChild(child.cloneNode(true));
+    });
 
 
 
