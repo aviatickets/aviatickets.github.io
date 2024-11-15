@@ -370,37 +370,7 @@ $("#dates_to").flatpickr({
                 onMonthChange: function (selectedDates, dateStr, instance) {
                     document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_TO).value = '' + instance.currentYear;
 		    document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_FROM).value = '' + instance.currentYear;
-
-
-
-
-
-const selectFrom = document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_FROM);
-const selectTo = document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_TO);
-
-if (selectFrom && selectTo) {
-    const childrenToCopy = selectTo.parentElement.parentElement.children;
-    
-    // Пример, как можно добавить детей из одного элемента в другой
-    while (selectFrom.parentElement.parentElement.firstChild) {
-        selectFrom.parentElement.parentElement.removeChild(selectFrom.parentElement.parentElement.firstChild);
-    }
-    
-    for (let i = 0; i < childrenToCopy.length; i++) {
-        selectFrom.parentElement.parentElement.appendChild(childrenToCopy[i].cloneNode(true));
-    }
-}
-
-
-
-
-
-
-
-
-
-
-			
+		    document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_FROM).parentElement.parentElement.children = document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_TO).parentElement.parentElement.children;
 		    document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_FROM).parentElement.parentElement.children[0].value = '' + instance.currentMonth;
                 },
 
