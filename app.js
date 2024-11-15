@@ -370,6 +370,8 @@ $("#dates_to").flatpickr({
                 onMonthChange: function (selectedDates, dateStr, instance) {
                     document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_TO).value = '' + instance.currentYear;
 		    document.querySelector("#dates_return")._flatpickr.jumpToDate(new Date(instance.currentYear, instance.currentMonth));
+		    document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_FROM).value = '' + instance.currentYear;
+
 
                 },
 
