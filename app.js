@@ -369,25 +369,8 @@ $("#dates_to").flatpickr({
                 },
                 onMonthChange: function (selectedDates, dateStr, instance) {
                     document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_TO).value = '' + instance.currentYear;
-		    document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_FROM).value = '' + instance.currentYear;
+		    document.querySelector("#dates_return")._flatpickr.jumpToDate(new Date(instance.currentYear, instance.currentMonth));
 
-
-	            const source = document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_TO).parentElement.parentElement.children[0];
-                    const target = document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_FROM).parentElement.parentElement.children[0];
-    while (target.firstChild) {
-        target.removeChild(target.firstChild);
-    }
-
-    Array.from(source.children).forEach(child => {
-        target.appendChild(child.cloneNode(true));
-    });
-
-
-
-
-
-			
-		    document.getElementById(FLATPICKR_CUSTOM_YEAR_SELECT_FROM).parentElement.parentElement.children[0].value = '' + instance.currentMonth;
                 },
 
 
