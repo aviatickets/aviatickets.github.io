@@ -156,6 +156,7 @@ input_from_field.parentElement.addEventListener('blur', () => {
             input_from_field.value = ''; // Очищаем поле, если ничего не выбрано
             item.set("from_field", '');
             item.set("from_code_field", '');
+	    tg.MainButton.hide();
             errorMessage_from_field.style.display = 'block'; // Показываем сообщение об ошибке
             errorMessage_from_field.classList.remove('fade-out'); // Убираем класс исчезновения
 	    
@@ -170,6 +171,7 @@ input_from_field.addEventListener('blur', () => {
             input_from_field.value = ''; // Очищаем поле, если ничего не выбрано
             item.set("from_field", '');
             item.set("from_code_field", '');
+	    tg.MainButton.hide();
             errorMessage_from_field.style.display = 'block'; // Показываем сообщение об ошибке
             errorMessage_from_field.classList.remove('fade-out'); // Убираем класс исчезновения
             tg.MainButton.hide();
@@ -262,6 +264,7 @@ input_to_field.parentElement.addEventListener('blur', () => {
             input_to_field.value = ''; // Очищаем поле, если ничего не выбрано
             item.set("to_field", '');
             item.set("to_code_field", '');
+	    tg.MainButton.hide();
             errorMessage_to_field.style.display = 'block'; // Показываем сообщение об ошибке
             errorMessage_to_field.classList.remove('fade-out'); // Убираем класс исчезновения
             setTimeout(() => {
@@ -275,6 +278,7 @@ input_to_field.addEventListener('blur', () => {
             input_to_field.value = ''; // Очищаем поле, если ничего не выбрано
             item.set("to_field", '');
             item.set("to_code_field", '');
+	    tg.MainButton.hide();
             errorMessage_to_field.style.display = 'block'; // Показываем сообщение об ошибке
             errorMessage_to_field.classList.remove('fade-out'); // Убираем класс исчезновения
             setTimeout(() => {
