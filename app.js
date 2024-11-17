@@ -62,7 +62,7 @@ if (urlParams['from_from_end']) {item.set("from_from_end", urlParams['from_from_
 
 	
   if (urlParams['repeat']) {tg.sendData(JSON.stringify(Object.fromEntries(item)));}
-  if (item.has('from_field') && item.has('dates_to') && item.has('to_field')) {
+  if (item.has('from_field') && item.has('dates_to') && item.has('to_field') && item.get("from_field") !== "" && item.get("dates_to") !== "" && item.get("from_field") !== "") {
 	tg.MainButton.setText("Поиск билетов");
 		tg.MainButton.show();
 		}
