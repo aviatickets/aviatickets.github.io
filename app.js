@@ -496,7 +496,7 @@ from_field.addEventListener("input", function(){
 		tg.MainButton.hide();
 	}
 
-	if (from_field.value != '' && item.has('dates_to') && to_field.value != '') {
+	if (from_field.value != '' && item.has('dates_to') && to_field.value != '' && item.has('from_field') && item.get('from_field') !== "" && item.has('to_field') && item.get('to_field') !== "") {
 	tg.MainButton.setText("Поиск билетов");
 		tg.MainButton.show();
 		}
@@ -506,9 +506,8 @@ to_field.addEventListener("input", function(){
 	if (to_field.value == '' && tg.MainButton.isVisible) {
 		tg.MainButton.hide();
 	}
-
-	if (to_field.value != '' && item.has('dates_to') && from_field.value != '') {
-	item.set("to_field", to_field.value);
+	if (to_field.value != '' && item.has('dates_to') && from_field.value != '' && item.has('from_field') && item.get('from_field') !== "" && item.has('to_field') && item.get('to_field') !== "") {
+	
 	tg.MainButton.setText("Поиск билетов");
 		tg.MainButton.show();
 		}
