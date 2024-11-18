@@ -136,7 +136,7 @@ input_from_field.addEventListener('input', async () => {
                 validSelection_from_field = true; // Устанавливаем выбор в true
                 suggestionsBox_from_field.style.display = 'none';
                 errorMessage_from_field.style.display = 'none'; // Скрываем сообщение об ошибке
-		    if (item.has('from_field') && item.get('from_field') !== "" && item.has('to_field') && item.get('to_field') !== "") {
+		    if (item.has('from_field') && item.get('from_field') !== "" && item.has('to_field') && item.get('to_field') !== "" && item.has('dates_to') && item.get('dates_to') !== "") {
 	
 	tg.MainButton.setText("Поиск билетов");
 		tg.MainButton.show();
@@ -248,7 +248,7 @@ const response = await fetch(`https://suggest.travelpayouts.com/search?service=a
                 validSelection_to_field = true; // Устанавливаем выбор в true
                 suggestionsBox_to_field.style.display = 'none';
                 errorMessage_to_field.style.display = 'none'; // Скрываем сообщение об ошибке
-		if (item.has('from_field') && item.get('from_field') !== "" && item.has('to_field') && item.get('to_field') !== "") {
+		if (item.has('from_field') && item.get('from_field') !== "" && item.has('to_field') && item.get('to_field') !== "" && item.has('dates_to') && item.get('dates_to') !== "") {
 	
 	tg.MainButton.setText("Поиск билетов");
 		tg.MainButton.show();
