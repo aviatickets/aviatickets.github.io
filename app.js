@@ -122,9 +122,10 @@ input_from_field.addEventListener('input', async () => {
 
 
 	const data = await response.json();
-
+	const processedSlugsFROM = new Set(); // Create a Set to track processed slugs
         suggestionsBox_from_field.innerHTML = '';
         data.forEach(elem => {
+	    if (!processedSlugsFROM.has(elem.slug)) {
             const div = document.createElement('div');
             div.textContent = `${elem.title} (${elem.slug}) (${elem.subtitle})`; // Отображаем имя и код
             div.classList.add('suggestion-item');
@@ -145,6 +146,7 @@ input_from_field.addEventListener('input', async () => {
 
             };
             suggestionsBox_from_field.appendChild(div);
+	    processedSlugsFROM.add(elem.slug);} // Add the slug to the Set
         });
 
         suggestionsBox_from_field.style.display = data.length > 0 ? 'block' : 'none';
@@ -234,9 +236,11 @@ const response = await fetch(`https://suggest.travelpayouts.com/search?service=a
   "credentials": "omit"
 });
         const data = await response.json();
+	const processedSlugsTO = new Set(); // Create a Set to track processed slugs
 
         suggestionsBox_to_field.innerHTML = '';
         data.forEach(elem => {
+	    if (!processedSlugsTO.has(elem.slug)) {
             const div = document.createElement('div');
             div.textContent = `${elem.title} (${elem.slug}) (${elem.subtitle})`; // Отображаем имя и код
             div.classList.add('suggestion-item');
@@ -256,6 +260,8 @@ const response = await fetch(`https://suggest.travelpayouts.com/search?service=a
 
             };
             suggestionsBox_to_field.appendChild(div);
+	    processedSlugsTO.add(elem.slug);
+	    }
         });
 
         suggestionsBox_to_field.style.display = data.length > 0 ? 'block' : 'none';
