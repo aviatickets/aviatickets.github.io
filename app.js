@@ -126,7 +126,7 @@ input_from_field.addEventListener('input', async () => {
         suggestionsBox_from_field.innerHTML = '';
         data.forEach(elem => {
             const div = document.createElement('div');
-            div.textContent = `${elem.title} (${elem.slug})`; // Отображаем имя и код
+            div.textContent = `${elem.title} (${elem.slug}) (${elem.subtitle})`; // Отображаем имя и код
             div.classList.add('suggestion-item');
             div.classList.add('input-field-input');
             div.onclick = () => {
@@ -238,7 +238,7 @@ const response = await fetch(`https://suggest.travelpayouts.com/search?service=a
         suggestionsBox_to_field.innerHTML = '';
         data.forEach(elem => {
             const div = document.createElement('div');
-            div.textContent = `${elem.title} (${elem.slug})`; // Отображаем имя и код
+            div.textContent = `${elem.title} (${elem.slug}) (${elem.subtitle})`; // Отображаем имя и код
             div.classList.add('suggestion-item');
             div.classList.add('input-field-input');
             div.onclick = () => {
