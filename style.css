@@ -501,7 +501,7 @@ select {
 input[type='checkbox'] {
   position: relative;
   display: block;
-  margin: 0 auto;
+  margin: 5px 0;
   cursor: pointer;
 
   &:before {
