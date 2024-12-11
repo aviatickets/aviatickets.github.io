@@ -22,7 +22,8 @@ body {
 }
 
 .item:nth-child(3),
-.item:nth-child(4) {
+.item:nth-child(4),
+.item:nth-child(5){
   grid-column: span 2; /* Вторая и третья строки: 1 колонка шириной в две ячейки */
 }
 
@@ -69,7 +70,8 @@ body {
     user-select: none;
     box-sizing: inherit;
     position: relative;
-    align-items: center;}
+    align-items: center;
+    }
 
 .input-field-input {
     font-weight: 400;
@@ -105,7 +107,6 @@ body {
     user-select: text;
     outline: none;
     cursor: text;
-    white-space: pre-wrap;
     --letter-spacing: -0.32px;}
 
 label {
@@ -428,37 +429,10 @@ line-height: 1.5;
 	font-weight: 400;
 	text-decoration: line-through;
 }
-
 .irs-with-grid {
-margin-left: 20px;
-margin-right: 20px;
-margin-bottom: 20px;
-}
-
-.irs--round .irs-from, .irs--round .irs-to, .irs--round .irs-single {
-    font-size: 14px;
-    line-height: 1;
-    text-shadow: none;
-    padding: 3px 5px;
-    background-color: var(--bs-component-active-bg);
-    color: white;
-    border-radius: 4px;
-}
-
-.irs--round .irs-handle {
-    top: 26px;
-    width: 24px;
-    height: 24px;
-    border: 4px solid var(--bs-component-active-bg);
-    background-color: white;
-    border-radius: 24px;
-    box-shadow: 0 1px 3px rgba(0, 0, 255, 0.3);
-}
-
-.irs--round .irs-bar {
-    top: 36px;
-    height: 4px;
-    background-color: var(--bs-component-active-bg);
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
 
 #suggestions_from_field {
@@ -522,3 +496,58 @@ select {
             appearance: none; /* Убирает стрелочку в других браузерах */
             padding: 10px; /* Добавляем отступы */
         }
+
+
+input[type='checkbox'] {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -14px;
+    left: -23px;
+    height: 28px;
+    width: 46px;
+    background-color: #bbb;
+    border-radius: 14px;
+    transition: background-color .2s;
+    cursor: pointer;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    transition: transform .2s, -webkit-transform .2s;
+    top: -12px;
+    left: -21px;
+    border-radius: 12px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+  }
+
+  &:checked {
+    &:before {
+      background-color: #006cfa;
+    }
+    &:after {
+      transform: translateX(18px);
+      -webkit-transform: translateX(18px);
+    }
+  }
+
+}
+
+.button {
+    height: auto;
+    padding: 10px;
+    border: 1px solid #000;
+    margin: 5px 0;
+}
