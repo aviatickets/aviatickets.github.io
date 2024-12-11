@@ -28,6 +28,10 @@ const default_time_from_from_end = getUrlParams()['from_from_end']
 // Заполняем поля ввода значениями из параметров
 function populateInputFields() {
   const urlParams = getUrlParams();
+  document.getElementById('onlyWithLuggage').checked = urlParams['onlyWithLuggage'];
+    document.getElementById('noTransfersWithVisa').checked = urlParams['noTransfersWithVisa'];
+    document.getElementById('noAirportChange').checked = urlParams['noAirportChange'];
+    document.getElementById('noRecheck').checked = urlParams['noRecheck'];
   if (urlParams['from_field']) {document.getElementById('from_field').value = urlParams['from_field'];
                                 item.set("from_field", urlParams['from_field']);}
   if (urlParams['from_code_field']) {item.set("from_code_field", urlParams['from_code_field']);}
@@ -60,7 +64,7 @@ if (urlParams['from_from_start']) {item.set("from_from_start", urlParams['from_f
 if (urlParams['from_from_end']) {item.set("from_from_end", urlParams['from_from_end']);}
 
 
-	
+
   if (urlParams['repeat']) {tg.sendData(JSON.stringify(Object.fromEntries(item)));}
   if (item.has('from_field') && item.has('dates_to') && item.has('to_field') && item.get("from_field") !== "" && item.get("dates_to") !== "" && item.get("from_field") !== "") {
 	tg.MainButton.setText("Поиск билетов");
@@ -90,7 +94,7 @@ const errorMessage_from_field = document.getElementById('error-message-from-fiel
 
 input_from_field.addEventListener('input', async () => {
     const query = input_from_field.value;
-    
+
     validSelection_from_field = false; // Сбрасываем выбор при вводе нового текста
     errorMessage_from_field.style.display = 'none'; // Скрываем сообщение об ошибке
 
@@ -100,7 +104,7 @@ input_from_field.addEventListener('input', async () => {
     }
 
     try {
-        const response = await fetch(`https://suggest.travelpayouts.com/search?service=aviasales&term=${query}&locale=ru`, {
+        const response = await fetch(`https://autocomplete.travelpayouts.com/places2?locale=ru&types[]=airport&types[]=city&term=${query}&locale=ru`, {
   "headers": {
     "accept": "*/*",
     "accept-language": "en",
@@ -118,36 +122,39 @@ input_from_field.addEventListener('input', async () => {
   "credentials": "omit"
 });
 
+const data = await response.json();
+
+suggestionsBox_from_field.innerHTML = '';
+const processedSlugs = new Set(); // Create a Set to track processed slugs
 
 
+	data.forEach(elem => {
+    // Check if the slug has already been processed
+    if (!processedSlugs.has(elem.code)) {
+        const div = document.createElement('div');
 
-	const data = await response.json();
-	const processedSlugsFROM = new Set(); // Create a Set to track processed slugs
-        suggestionsBox_from_field.innerHTML = '';
-        data.forEach(elem => {
-	    if (!processedSlugsFROM.has(elem.slug)) {
-            const div = document.createElement('div');
-            div.textContent = `${elem.title} (${elem.slug}) (${elem.subtitle})`; // Отображаем имя и код
-            div.classList.add('suggestion-item');
-            div.classList.add('input-field-input');
-            div.onclick = () => {
-                input_from_field.value = elem.title; // Заполняем input именем
-                item.set("from_field", elem.title);
-                item.set("from_code_field", elem.slug);
-                validSelection_from_field = true; // Устанавливаем выбор в true
-                suggestionsBox_from_field.style.display = 'none';
-                errorMessage_from_field.style.display = 'none'; // Скрываем сообщение об ошибке
-		    if (item.has('from_field') && item.get('from_field') !== "" && item.has('to_field') && item.get('to_field') !== "" && item.has('dates_to') && item.get('dates_to') !== "") {
-	
-	tg.MainButton.setText("Поиск билетов");
-		tg.MainButton.show();
-		};
+        const city_country_name = elem.city_name ? `${elem.city_name}, ${elem.country_name}` : elem.country_name;
+        if (elem.type == 'airport') {
+    div.textContent = `✈️ ${elem.name} (${elem.code}) (${city_country_name})`;
+} else {
+    div.innerHTML = `📍 <strong>${elem.name} (${city_country_name}) </strong>`;
+} // Display title and slug
+        div.classList.add('suggestion-item');
+        div.classList.add('input-field-input');
 
+        div.onclick = () => {
+            input_from_field.value = elem.name; // Fill input with title
+            item.set("from_field", elem.name);
+            item.set("from_code_field", elem.code);
+            validSelection_from_field = true; // Set selection to true
+            suggestionsBox_from_field.style.display = 'none';
+            errorMessage_from_field.style.display = 'none'; // Hide error message
+        };
 
-            };
-            suggestionsBox_from_field.appendChild(div);
-	    processedSlugsFROM.add(elem.slug);} // Add the slug to the Set
-        });
+        suggestionsBox_from_field.appendChild(div); // Append the new div to the suggestions box
+        processedSlugs.add(elem.code); // Add the slug to the Set
+    }
+});
 
         suggestionsBox_from_field.style.display = data.length > 0 ? 'block' : 'none';
     } catch (error) {
@@ -165,7 +172,7 @@ input_from_field.parentElement.addEventListener('blur', () => {
 	    tg.MainButton.hide();
             errorMessage_from_field.style.display = 'block'; // Показываем сообщение об ошибке
             errorMessage_from_field.classList.remove('fade-out'); // Убираем класс исчезновения
-	    
+
             setTimeout(() => {
                 errorMessage_from_field.classList.add('fade-out'); // Добавляем класс для плавного исчезновения
             }, 3000); // Ждем 3 секунды перед началом исчезновения
@@ -218,7 +225,7 @@ input_to_field.addEventListener('input', async () => {
     }
 
     try {
-const response = await fetch(`https://suggest.travelpayouts.com/search?service=aviasales&term=${query}&locale=ru`, {
+const response = await fetch(`https://autocomplete.travelpayouts.com/places2?locale=ru&types[]=airport&types[]=city&term=${query}&locale=ru`, {
   "headers": {
     "accept": "*/*",
     "accept-language": "en",
@@ -236,33 +243,38 @@ const response = await fetch(`https://suggest.travelpayouts.com/search?service=a
   "credentials": "omit"
 });
         const data = await response.json();
-	const processedSlugsTO = new Set(); // Create a Set to track processed slugs
 
         suggestionsBox_to_field.innerHTML = '';
+        const processedSlugsTo = new Set(); // Create a Set to track processed slugs
         data.forEach(elem => {
-	    if (!processedSlugsTO.has(elem.slug)) {
-            const div = document.createElement('div');
-            div.textContent = `${elem.title} (${elem.slug}) (${elem.subtitle})`; // Отображаем имя и код
-            div.classList.add('suggestion-item');
-            div.classList.add('input-field-input');
-            div.onclick = () => {
-                input_to_field.value = elem.title; // Заполняем input именем
-                item.set("to_field", elem.title);
-                item.set("to_code_field", elem.slug);
-                validSelection_to_field = true; // Устанавливаем выбор в true
-                suggestionsBox_to_field.style.display = 'none';
-                errorMessage_to_field.style.display = 'none'; // Скрываем сообщение об ошибке
-		if (item.has('from_field') && item.get('from_field') !== "" && item.has('to_field') && item.get('to_field') !== "" && item.has('dates_to') && item.get('dates_to') !== "") {
-	
+    // Check if the slug has already been processed
+    if (!processedSlugsTo.has(elem.code)) {
+        const div = document.createElement('div');
+
+        const city_country_name = elem.city_name ? `${elem.city_name}, ${elem.country_name}` : elem.country_name;
+        if (elem.type == 'airport') {
+    div.textContent = `✈️ ${elem.name} (${elem.code}) (${city_country_name})`;
+} else {
+    div.innerHTML = `📍 <strong>${elem.name} (${city_country_name}) </strong>`;
+} // Display title and slug
+        div.classList.add('suggestion-item');
+        div.classList.add('input-field-input');
+        div.onclick = () => {
+            input_to_field.value = elem.name; // Fill input with title
+            item.set("to_field", elem.name);
+            item.set("to_code_field", elem.code);
+            validSelection_to_field = true; // Set selection to true
+            suggestionsBox_to_field.style.display = 'none';
+            errorMessage_to_field.style.display = 'none';
+        if (item.has('from_field') && item.get('from_field') !== "" && item.has('to_field') && item.get('to_field') !== "" && item.has('dates_to') && item.get('dates_to') !== "") {
+
 	tg.MainButton.setText("Поиск билетов");
 		tg.MainButton.show();
-		};
-
-            };
-            suggestionsBox_to_field.appendChild(div);
-	    processedSlugsTO.add(elem.slug);
-	    }
-        });
+}}
+        suggestionsBox_to_field.appendChild(div); // Append the new div to the suggestions box
+        processedSlugsTo.add(elem.code); // Add the slug to the Set
+    }
+});
 
         suggestionsBox_to_field.style.display = data.length > 0 ? 'block' : 'none';
     } catch (error) {
@@ -335,7 +347,7 @@ const time_exchange = document.getElementById("time-exchange");
 		delete item.delete('time-exchange');
 
 	}
-    
+
 const FLATPICKR_CUSTOM_YEAR_SELECT_FROM = 'flatpickr-custom-year-select-from';
 const FLATPICKR_CUSTOM_YEAR_SELECT_TO = 'flatpickr-custom-year-select-to';
 
@@ -396,7 +408,7 @@ $("#dates_to").flatpickr({
 
 
                 },
-		
+
 
 
             onChange: function(selectedDates, dateStr, instance) {
@@ -520,7 +532,7 @@ to_field.addEventListener("input", function(){
 		tg.MainButton.hide();
 	}
 	if (to_field.value != '' && item.has('dates_to') && from_field.value != '' && item.has('from_field') && item.get('from_field') !== "" && item.has('to_field') && item.get('to_field') !== "") {
-	
+
 	tg.MainButton.setText("Поиск билетов");
 		tg.MainButton.show();
 		}
@@ -543,7 +555,7 @@ exchange.addEventListener("change", function() {
 
 
 
-}); 
+});
 
 time_exchange.addEventListener("change", function() {
     item.set("time-exchange", time_exchange.value);
@@ -705,4 +717,26 @@ Telegram.WebApp.onEvent("mainButtonClicked", function(){
 
 	tg.sendData(JSON.stringify(Object.fromEntries(item)));
 });
+function toggleContent() {
+    const content = document.getElementById("toggleContent");
+    const button = document.getElementById("toggleButton");
 
+    // Переключаем отображение содержимого
+    if (content.style.display === "none" || content.style.display === "") {
+        content.style.display = "block"; // Сначала показываем блок
+        setTimeout(() => {
+            content.style.opacity = 1; // Затем делаем его видимым
+        }, 10); // Небольшая задержка для запуска перехода
+        button.textContent = "Скрыть"; // Меняем текст кнопки на "Скрыть"
+    } else {
+        content.style.opacity = 0; // Сначала скрываем
+        setTimeout(() => {
+            content.style.display = "none"; // Затем скрываем блок
+            button.textContent = "Дополнительные фильтры"; // Меняем текст кнопки на "Дополнительные фильтры"
+        }, 500); // Это должно совпадать с длительностью перехода
+    }
+}
+
+function updateItem(key, value) {
+        item.set(key, value);
+    }
