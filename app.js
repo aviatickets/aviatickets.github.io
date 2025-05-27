@@ -32,10 +32,10 @@ function populateInputFields() {
     document.getElementById('noTransfersWithVisa').checked = urlParams['noTransfersWithVisa'];
     document.getElementById('noAirportChange').checked = urlParams['noAirportChange'];
     document.getElementById('noRecheck').checked = urlParams['noRecheck'];
-  if (urlParams['onlyWithLuggage']) {item.set("onlyWithLuggage", urlParams['onlyWithLuggage']);}
-  if (urlParams['noTransfersWithVisa']) {item.set("noTransfersWithVisa", urlParams['noTransfersWithVisa']);}
-  if (urlParams['noAirportChange']) {item.set("noAirportChange", urlParams['noAirportChange']);}
-  if (urlParams['noRecheck']) {item.set("noRecheck", urlParams['noRecheck']);}
+  if (urlParams['onlyWithLuggage'] === 'true') {item.set("onlyWithLuggage", urlParams['onlyWithLuggage']);}
+  if (urlParams['noTransfersWithVisa'] === 'true') {item.set("noTransfersWithVisa", urlParams['noTransfersWithVisa']);}
+  if (urlParams['noAirportChange'] === 'true') {item.set("noAirportChange", urlParams['noAirportChange']);}
+  if (urlParams['noRecheck'] === 'true') {item.set("noRecheck", urlParams['noRecheck']);}
 	
   if (urlParams['from_field']) {document.getElementById('from_field').value = urlParams['from_field'];
                                 item.set("from_field", urlParams['from_field']);}
