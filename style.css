@@ -26,6 +26,9 @@ body {
 .item:nth-child(5){
   grid-column: span 2; /* Вторая и третья строки: 1 колонка шириной в две ячейки */
 }
+.item:nth-child(6){
+  grid-column: span 2; /* Вторая и третья строки: 1 колонка шириной в две ячейки */
+}
 
 .img {
 	width: 150px;
@@ -402,7 +405,8 @@ line-height: 1.5;
 .flatpickr-day {
 	color: rgb(37, 47, 74);}
 
-
+.flatpickr-calendar.inline, .flatpickr-calendar.open
+{max-height: 1000px;}
 #input-container {
             position: relative; /* Устанавливаем относительное позиционирование для контейнера */
         }
