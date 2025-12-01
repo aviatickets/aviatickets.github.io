@@ -567,3 +567,21 @@ input[type='checkbox'] {
     border: 1px solid #000;
     margin: 5px 0;
 }
+.mode-btn {
+    padding: 12px 24px; /* Увеличиваем размер */
+    min-width: 100px;   /* Минимальная ширина */
+    min-height: 44px;   /* Минимальная высота по рекомендациям Apple */
+    font-size: 16px;    /* Увеличиваем текст для мобильных */
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    color: #333;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1); /* Подсветка при нажатии */
+        user-select: none; /* Предотвращает выделение текста при касании */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    touch-action: manipulation; /* Оптимизация для касаний */
+}
