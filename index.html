@@ -4,17 +4,13 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-
     <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
     <link href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css"/>
 
-
-    <link href="https://preview.keenthemes.com/html/keen/docs/assets/plugins/global/plugins.bundle.css"
-          rel="stylesheet">
-    <link href="https://preview.keenthemes.com/html/keen/docs/assets/plugins/custom/prismjs/prismjs.bundle.css"
-          rel="stylesheet">
+    <link href="https://preview.keenthemes.com/html/keen/docs/assets/plugins/global/plugins.bundle.css" rel="stylesheet">
+    <link href="https://preview.keenthemes.com/html/keen/docs/assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet">
     <link href="https://preview.keenthemes.com/html/keen/docs/assets/css/style.bundle.css" rel="stylesheet">
     <script src="https://preview.keenthemes.com/html/keen/docs/assets/plugins/global/plugins.bundle.js"></script>
     <script src="https://preview.keenthemes.com/html/keen/docs/assets/js/scripts.bundle.js"></script>
@@ -22,8 +18,8 @@
     <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/ru.js"></script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
     <link href="style.css" rel="stylesheet">
 
     <title>Document</title>
@@ -32,52 +28,71 @@
             display: none;
         }
 
+        /* Стили для переключателя режимов */
+        #modeToggle {
+            display: inline-flex;
+            background: #f0f0f0;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
 
+        .mode-btn {
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            background: transparent;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
 
+        .mode-btn.active {
+            background: #007bff;
+            color: white;
+        }
 
-
-
-
-
-
-
-
-
+        .mode-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0 30px;
+        }
     </style>
 </head>
 <body>
 
+
+
 <div class="container">
+    <!-- 🔘 Переключатель между режимами -->
+<div class="mode-container">
+    <div id="modeToggle">
+        <button id="flexibleDatesBtn" class="mode-btn active" onclick="setMode('flexible')">Гибкие даты</button>
+        <button id="countrySearchBtn" class="mode-btn" onclick="setMode('countries')">Поиск с странами</button>
+    </div>
+</div>
+
     <div class="inner">
         <div class="item">
             <div class="input-field">
 
                 <input class="input-field-input" id="from_field" placeholder="Отсюда" autocomplete="off">
                 <div id="suggestions_from_field"></div>
-                <div class="error input-field-input" id="error-message-from-field">Пожалуйста, выберите предложение из
-                    списка.
-                </div>
+                <div class="error input-field-input" id="error-message-from-field">Пожалуйста, выберите предложение из списка.</div>
                 <div class="input-field-border"></div>
-                <label>
-                    <span class="i18n">Откуда</span>
-                </label>
+                <label><span class="i18n">Откуда</span></label>
             </div>
         </div>
+
         <div class="item">
             <div class="input-field">
                 <input class="input-field-input" id="to_field" placeholder="Туда" autocomplete="off">
                 <div id="suggestions_to_field"></div>
-                <div class="error error-to-field input-field-input" id="error-message-to-field">Пожалуйста, выберите
-                    предложение из списка.
-                </div>
-
+                <div class="error error-to-field input-field-input" id="error-message-to-field">Пожалуйста, выберите предложение из списка.</div>
                 <div class="input-field-border"></div>
-                <label>
-                    <span class="i18n">Куда</span>
-                </label>
+                <label><span class="i18n">Куда</span></label>
             </div>
         </div>
-
 
         <!-- Новый элемент для расширения -->
         <div class="item">
@@ -133,7 +148,7 @@
     margin-left: 15px;
 }">
                         <span style="justify-self: start;">Только с багажом</span>
-                        <input type="checkbox" id="onlyWithLuggage" onchange="updateItem('onlyWithLuggage', this.checked)">
+                        <input type="checkbox"  id="onlyWithLuggage" onchange="updateItem('onlyWithLuggage', this.checked)">
                     </div>
 
                     <div style="display: grid; grid-template-columns: 1fr auto; align-items: center;     margin-bottom: 10px;
@@ -141,7 +156,7 @@
     margin-left: 15px;
 }">
                         <span style="justify-self: start;">Без пересадок с визой</span>
-                        <input type="checkbox" id="noTransfersWithVisa" onchange="updateItem('noTransfersWithVisa', this.checked)">
+                        <input type="checkbox"  id="noTransfersWithVisa" onchange="updateItem('noTransfersWithVisa', this.checked)">
                     </div>
 
                     <div style="display: grid; grid-template-columns: 1fr auto; align-items: center;     margin-bottom: 10px;
@@ -164,45 +179,44 @@
             </div>
         </div>
 
-
-        <div class="item">
-            <div class="input-field">
-
-                <label style="margin-top: 17px;">
-                    <span class="i18n">Даты туда</span>
-                </label>
-                <div class="date_time_picker d-none " id="dates_to" style="width: auto !important;"></div>
-                <script>
-
-
-                </script>
-
-
+        <div class="item" id="item_dates_to">
+            <div class="input-field" >
+                <label style="margin-top: 17px;"><span class="i18n">Даты туда</span></label>
+                <div class="date_time_picker d-none" id="dates_to" style="width: auto !important;"></div>
             </div>
         </div>
-        <div class="item">
-            <div class="input-field">
 
-                <label style="margin-top: 17px;">
-                    <span class="i18n">Даты обратно</span>
-                </label>
+        <div class="item" id="item_dates_return">
+            <div class="input-field">
+                <label style="margin-top: 17px;"><span class="i18n">Даты обратно</span></label>
                 <div class="date_time_picker d-none" id="dates_return" style="width: auto !important;"></div>
-
-
             </div>
         </div>
 
+        <div class="item" id="item_dates_to_return">
+            <div class="input-field">
+                <label style="margin-top: 17px;"><span class="i18n">Даты туда и обратно</span></label>
+                <div class="date_time_picker d-none" id="dates_to_return" style="width: auto !important;"></div>
+            </div>
+        </div>
 
     </div>
-
-
 </div>
-
 
 <div class="usercard" id="usercard"></div>
 
+
+
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script src="app.js"></script>
+
+
+
+
+<script>
+
+</script>
+
 
 </body>
 </html>
