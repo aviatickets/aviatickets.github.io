@@ -578,7 +578,6 @@ input[type='checkbox'] {
     color: #333;
     font-weight: 500;
     transition: all 0.3s ease;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1); /* Подсветка при нажатии */
         user-select: none; /* Предотвращает выделение текста при касании */
     -webkit-user-select: none;
     -moz-user-select: none;
