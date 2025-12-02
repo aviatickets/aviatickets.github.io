@@ -137,11 +137,11 @@ function populateInputFields() {
 
 
 
-    if (urlParams['flexible']) {
-        setMode('flexible');
-    }else {
-                    setMode('countries');
-                }
+if (urlParams['flexible'] === false || urlParams['flexible'] === 'false') {
+    setMode('countries');
+} else {
+    setMode('flexible'); // во всех остальных случаях, включая когда параметра нет
+}
     // Инициализация начального состояния
 
 
