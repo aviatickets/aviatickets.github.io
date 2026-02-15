@@ -27,6 +27,72 @@ const default_time_from_to_end = getUrlParams()['from_to_end']
 const default_time_from_from_start = getUrlParams()['from_from_start']
 const default_time_from_from_end = getUrlParams()['from_from_end']
 
+const translations = {
+    en: {
+        "Откуда": "From",
+        "Куда": "To",
+        "Максимум пересадок": "Maximum transfers",
+        "Часов на пересадку": "Hours for transfer",
+        "Только с багажом": "Only with luggage",
+        "Без пересадок с визой": "No transfers with visa",
+        "Без смены аэропорта": "No airport change",
+        "Без повторной регистрации": "No recheck",
+        "Даты туда": "Departure dates",
+        "Даты обратно": "Return dates",
+        "Даты туда и обратно": "Departure and return dates",
+        "Дополнительные фильтры": "Additional filters",
+        "Без пересадок": "No transfers",
+        "Не важно": "Not important",
+        "Пожалуйста, выберите предложение из списка.": "Please select a suggestion from the list.",
+        "Гибкие даты": "Flexible dates",
+        "Поиск с странами": "Search by countries",
+        "Отсюда": "From here",
+        "Туда": "To here",
+        "Скрыть": "Hide",
+        "Настройки времени вылета и прибытия": "Departure and arrival time settings",
+        "Скрыть настройки времени": "Hide",
+        "Время вылета": "Departure time",
+        "Время прибытия": "Arrival time",
+        "Время вылета туда": "Departure time",
+        "Время вылета обратно": "Return departure time",
+        "Время прибытия туда": "Arrival time",
+        "Время прибытия обратно": "Return arrival time"
+
+    },
+    ru: {
+        "Откуда": "Откуда",
+        "Куда": "Куда",
+        "Максимум пересадок": "Максимум пересадок",
+        "Часов на пересадку": "Часов на пересадку",
+        "Только с багажом": "Только с багажом",
+        "Без пересадок с визой": "Без пересадок с визой",
+        "Без смены аэропорта": "Без смены аэропорта",
+        "Без повторной регистрации": "Без повторной регистрации",
+        "Даты туда": "Даты туда",
+        "Даты обратно": "Даты обратно",
+        "Даты туда и обратно": "Даты туда и обратно",
+        "Дополнительные фильтры": "Дополнительные фильтры",
+        "Без пересадок": "Без пересадок",
+        "Не важно": "Не важно",
+        "Пожалуйста, выберите предложение из списка.": "Пожалуйста, выберите предложение из списка.",
+        "Гибкие даты": "Гибкие даты",
+        "Поиск с странами": "Поиск с странами",
+        "Отсюда": "Отсюда",
+        "Туда": "Туда",
+        "Скрыть": "Скрыть",
+        "Настройки времени вылета и прибытия": "Настройки времени вылета и прибытия",
+        "Скрыть настройки времени": "Скрыть настройки времени",
+        "Время вылета": "Время вылета",
+        "Время прибытия": "Время прибытия",
+        "Время вылета туда": "Время вылета туда",
+        "Время вылета обратно": "Время вылета обратно",
+        "Время прибытия туда": "Время прибытия туда",
+        "Время прибытия обратно": "Время прибытия обратно"
+
+
+    }
+};
+
 
 // Заполняем поля ввода значениями из параметров
 function populateInputFields() {
@@ -137,7 +203,7 @@ function populateInputFields() {
 
 
 
-if (urlParams['flexible'] === false || urlParams['flexible'] === 'false') {
+    if (urlParams['flexible'] === false || urlParams['flexible'] === 'false') {
     setMode('countries');
 } else {
     setMode('flexible'); // во всех остальных случаях, включая когда параметра нет
@@ -521,7 +587,7 @@ $("#dates_to").flatpickr({
     locale: {
         firstDayOfWeek: 1
     },
-    locale: "ru",
+    locale: getLanguage(),
     inline: true,
     maxDate: new Date().fp_incr(999),
     defaultDate: false || default_dates_to,
@@ -616,7 +682,7 @@ $("#dates_return").flatpickr({
     locale: {
         firstDayOfWeek: 1
     },
-    locale: "ru",
+    locale: getLanguage(),
     inline: true,
     defaultDate: false || default_dates_return,
     maxDate: new Date().fp_incr(999),
@@ -698,7 +764,7 @@ $("#dates_to_return").flatpickr({
     locale: {
         firstDayOfWeek: 1
     },
-    locale: "ru",
+    locale: getLanguage(),
     inline: true,
     defaultDate: false || default_dates_to_return,
     maxDate: new Date().fp_incr(999),
@@ -806,14 +872,14 @@ time_exchange.addEventListener("change", function() {
 // Создаем новый элемент input
 const tostartElement = document.createElement('strong');
 const toendElement = document.createElement('strong');
-tostartElement.textContent = 'Время вылета';
-toendElement.textContent = 'Время прибытия';
+tostartElement.textContent = translations[getLanguage()]["Время вылета"];
+toendElement.textContent = translations[getLanguage()]["Время прибытия"];
 
 const fromstartElement = document.createElement('strong');
 const fromendElement = document.createElement('strong');
 
-fromstartElement.textContent = 'Время вылета';
-fromendElement.textContent = 'Время прибытия';
+fromstartElement.textContent = translations[getLanguage()]["Время вылета"];
+fromendElement.textContent = translations[getLanguage()]["Время прибытия"];
 
 const inputtostartElement = document.createElement('input');
 inputtostartElement.type = 'text';
@@ -881,7 +947,7 @@ thirdCalendar.appendChild(timeSettingsWrapper);
 
 // Создаем подписи и input для слайдеров
 const labelsAndInputs = [{
-        label: 'Время вылета туда',
+        label: translations[getLanguage()]['Время вылета туда'],
         className: 'js-range-slider-to-return-start',
         keyFrom: 'to_return_start',
         From: getUrlParams()['to_return_start'],
@@ -889,7 +955,7 @@ const labelsAndInputs = [{
         keyTo: 'to_return_end'
     },
     {
-        label: 'Время прибытия туда',
+        label: translations[getLanguage()]['Время прибытия туда'],
         className: 'js-range-slider-to-return-end',
         keyFrom: 'to_return_from_start',
         From: getUrlParams()['to_return_from_start'],
@@ -897,7 +963,7 @@ const labelsAndInputs = [{
         keyTo: 'to_return_from_end'
     },
     {
-        label: 'Время вылета обратно',
+        label: translations[getLanguage()]['Время вылета обратно'],
         className: 'js-range-slider-from-return-start',
         keyFrom: 'from_return_start',
         From: getUrlParams()['from_return_start'],
@@ -905,7 +971,7 @@ const labelsAndInputs = [{
         keyTo: 'from_return_end'
     },
     {
-        label: 'Время прибытия обратно',
+        label: translations[getLanguage()]['Время прибытия обратно'],
         className: 'js-range-slider-from-return-end',
         keyFrom: 'from_return_from_start',
         From: getUrlParams()['from_return_from_start'],
@@ -951,11 +1017,11 @@ labelsAndInputs.forEach(itemDef => {
 timeSettingsButton.addEventListener('click', () => {
     if (slidersContainer.style.display === 'none') {
         slidersContainer.style.display = 'flex';
-        timeSettingsButton.textContent = 'Скрыть настройки времени';
+        timeSettingsButton.textContent = translations[getLanguage()]["Скрыть настройки времени"];
         thirdCalendar.style.minHeight = '500px'; // увеличиваем высоту календаря, если нужно
     } else {
         slidersContainer.style.display = 'none';
-        timeSettingsButton.textContent = 'Настройки времени вылета и прибытия';
+        timeSettingsButton.textContent = translations[getLanguage()]["Настройки времени вылета и прибытия"];
         thirdCalendar.style.minHeight = ''; // возвращаем исходную высоту
     }
 });
@@ -1076,12 +1142,12 @@ function toggleContent() {
         setTimeout(() => {
             content.style.opacity = 1; // Затем делаем его видимым
         }, 10); // Небольшая задержка для запуска перехода
-        button.textContent = "Скрыть"; // Меняем текст кнопки на "Скрыть"
+        button.textContent = translations[getLanguage()]["Скрыть"]; // Меняем текст кнопки на "Скрыть"
     } else {
         content.style.opacity = 0; // Сначала скрываем
         setTimeout(() => {
             content.style.display = "none"; // Затем скрываем блок
-            button.textContent = "Дополнительные фильтры"; // Меняем текст кнопки на "Дополнительные фильтры"
+            button.textContent = translations[getLanguage()]["Дополнительные фильтры"]; // Меняем текст кнопки на "Дополнительные фильтры"
         }, 500); // Это должно совпадать с длительностью перехода
     }
 }
@@ -1134,4 +1200,129 @@ if (!item.get("to_code_field")) {
         itemDatesToReturn.style.display = 'block';
     }
 }
+
+function changeLanguage(lang) {
+    // Обновляем URL без перезагрузки страницы
+    const url = new URL(window.location);
+    url.searchParams.set('lang', lang);
+    window.history.pushState({}, '', url);
+
+    // Переводим страницу
+    translatePage(lang);
+
+    // Сохраняем выбор
+    localStorage.setItem('preferredLang', lang);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Получаем язык из URL
+    const lang = getLangFromURL();
+
+    // Если язык указан и поддерживается
+    if (lang && translations[lang]) {
+        translatePage(lang);
+
+        // Можно также сохранить в localStorage для запоминания
+        localStorage.setItem('preferredLang', lang);
+    } else {
+        // Проверяем сохраненный язык
+        const savedLang = localStorage.getItem('preferredLang');
+        if (savedLang && translations[savedLang]) {
+            translatePage(savedLang);
+        }
+    }
+
+});
+
+function getLangFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('lang') || 'ru';
+}
+
+// Или можно использовать:
+function getLanguage() {
+    const hash = window.location.hash;
+    if (hash.includes('lang=')) {
+        return hash.split('lang=')[1].split('&')[0];
+    }
+    const search = window.location.search;
+    if (search.includes('lang=')) {
+        return search.split('lang=')[1].split('&')[0];
+    }
+    return 'ru'; // язык по умолчанию
+}
+
+function translatePage(lang) {
+    // Получаем выбранный язык или используем русский по умолчанию
+    const currentLang = lang || 'ru';
+    const dict = translations[currentLang];
+
+    if (!dict) return;
+
+    // Находим все элементы с классом i18n
+    const elements = document.querySelectorAll('.i18n');
+    elements.forEach(element => {
+        const key = element.textContent.trim();
+        if (dict[key]) {
+            element.textContent = dict[key];
+        }
+    });
+
+    // Обновляем placeholder
+    const fromInput = document.getElementById('from_field');
+    const toInput = document.getElementById('to_field');
+    if (dict['Отсюда'] && fromInput) fromInput.placeholder = dict['Отсюда'];
+    if (dict['Туда'] && toInput) toInput.placeholder = dict['Туда'];
+
+    // Обновляем кнопки режимов
+    const flexibleBtn = document.getElementById('flexibleDatesBtn');
+    const countryBtn = document.getElementById('countrySearchBtn');
+    if (dict['Гибкие даты'] && flexibleBtn) flexibleBtn.textContent = dict['Гибкие даты'];
+    if (dict['Поиск с странами'] && countryBtn) countryBtn.textContent = dict['Поиск с странами'];
+
+    // Обновляем опции select
+    const exchangeSelect = document.getElementById('exchange');
+    const timeSelect = document.getElementById('time-exchange');
+
+    if (exchangeSelect) {
+        const noTransferOption = exchangeSelect.querySelector('option[value="0"]');
+        if (noTransferOption && dict['Без пересадок']) {
+            noTransferOption.textContent = dict['Без пересадок'];
+        }
+    }
+
+    if (timeSelect) {
+        const notImportantOption = timeSelect.querySelector('option[value="0"]');
+        if (notImportantOption && dict['Не важно']) {
+            notImportantOption.textContent = dict['Не важно'];
+        }
+    }
+
+    // Обновляем текст ошибок
+    const errorFrom = document.getElementById('error-message-from-field');
+    const errorTo = document.getElementById('error-message-to-field');
+    if (errorFrom && dict['Пожалуйста, выберите предложение из списка.']) {
+        errorFrom.textContent = dict['Пожалуйста, выберите предложение из списка.'];
+    }
+    if (errorTo && dict['Пожалуйста, выберите предложение из списка.']) {
+        errorTo.textContent = dict['Пожалуйста, выберите предложение из списка.'];
+    }
+
+    // Обновляем текст checkbox
+    document.querySelectorAll('span').forEach(span => {
+        const text = span.textContent.trim();
+        if (dict[text]) {
+            span.textContent = dict[text];
+        }
+    });
+
+    // Обновляем текст checkbox
+    document.querySelectorAll('button').forEach(span => {
+        const text = span.textContent.trim();
+        if (dict[text]) {
+            span.textContent = dict[text];
+        }
+    });
+}
+
 
