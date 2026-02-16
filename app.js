@@ -56,6 +56,7 @@ const translations = {
         "Время вылета туда": "Departure time",
         "Время вылета обратно": "Return departure time",
         "Время прибытия туда": "Arrival time",
+        "Поиск билетов": "Start search",
         "Время прибытия обратно": "Return arrival time"
 
     },
@@ -87,6 +88,7 @@ const translations = {
         "Время вылета туда": "Время вылета туда",
         "Время вылета обратно": "Время вылета обратно",
         "Время прибытия туда": "Время прибытия туда",
+        "Поиск билетов": "Поиск билетов",
         "Время прибытия обратно": "Время прибытия обратно"
 
 
@@ -215,7 +217,7 @@ function populateInputFields() {
         tg.sendData(JSON.stringify(Object.fromEntries(item)));
     }
     if (item.has('from_field') && item.has('dates_to') && item.has('to_field') && item.get("from_field") !== "" && item.get("dates_to") !== "" && item.get("from_field") !== "") {
-        tg.MainButton.setText("Поиск билетов");
+        tg.MainButton.setText(translations[getLanguage()]['Поиск билетов']);
         tg.MainButton.show();
     }
 
@@ -472,7 +474,7 @@ input_to_field.addEventListener('input', async () => {
                     errorMessage_to_field.style.display = 'none';
                 };
                 if (item.get('flexible') && item.has('from_field') && item.get('from_field') !== "" && item.has('to_field') && item.get('to_field') !== "" && item.has('dates_to') && item.get('dates_to') !== "") {
-                    tg.MainButton.setText("Поиск билетов");
+                    tg.MainButton.setText(translations[getLanguage()]['Поиск билетов']);
 
                     tg.MainButton.show();
                 }
@@ -533,12 +535,12 @@ document.addEventListener('click', (event) => {
         suggestionsBox_to_field.style.display = 'none';
     }
                     if (!item.get('flexible') && item.has('from_field') && item.get('from_field') !== "" && item.has('to_field') && item.get('to_field') !== "" && item.has('dates_to_return') && item.get('dates_to_return') !== "") {
-                    tg.MainButton.setText("Поиск билетов");
+                    tg.MainButton.setText(translations[getLanguage()]['Поиск билетов']);
 
                     tg.MainButton.show();
                 }
     if (item.get('flexible') && item.has('from_field') && item.get('from_field') !== "" && item.has('to_field') && item.get('to_field') !== "" && item.has('dates_to') && item.get('dates_to') !== "") {
-                    tg.MainButton.setText("Поиск билетов");
+                    tg.MainButton.setText(translations[getLanguage()]['Поиск билетов']);
 
                     tg.MainButton.show();
                 }
@@ -549,12 +551,12 @@ document.addEventListener('click', (event) => {
         suggestionsBox_from_field.style.display = 'none';
     }
                     if (!item.get('flexible') && item.has('from_field') && item.get('from_field') !== "" && item.has('to_field') && item.get('to_field') !== "" && item.has('dates_to_return') && item.get('dates_to_return') !== "") {
-                    tg.MainButton.setText("Поиск билетов");
+                    tg.MainButton.setText(translations[getLanguage()]['Поиск билетов']);
 
                     tg.MainButton.show();
                 }
     if (item.get('flexible') && item.has('from_field') && item.get('from_field') !== "" && item.has('to_field') && item.get('to_field') !== "" && item.has('dates_to') && item.get('dates_to') !== "") {
-                    tg.MainButton.setText("Поиск билетов");
+                    tg.MainButton.setText(translations[getLanguage()]['Поиск билетов']);
 
                     tg.MainButton.show();
                 }
@@ -642,7 +644,7 @@ $("#dates_to").flatpickr({
         if (selectedDates.length != 0) {
             item.set("dates_to", dateStr);
             if (from_field.value != '' && to_field.value != '') {
-                tg.MainButton.setText("Поиск билетов");
+                tg.MainButton.setText(translations[getLanguage()]['Поиск билетов']);
                 tg.MainButton.show();
             } else {
                 tg.MainButton.hide();
@@ -728,7 +730,7 @@ $("#dates_return").flatpickr({
         if (selectedDates.length != 0) {
             item.set("dates_return", dateStr);
             if (from_field.value != '' && to_field.value != '' && item.has('dates_to')) {
-                tg.MainButton.setText("Поиск билетов");
+                tg.MainButton.setText(translations[getLanguage()]['Поиск билетов']);
                 tg.MainButton.show();
             } else {
                 tg.MainButton.hide();
@@ -809,7 +811,7 @@ $("#dates_to_return").flatpickr({
         if (selectedDates.length > 0) {
             item.set("dates_to_return", dateStr);
             if (from_field.value != '' && to_field.value != '' && item.has('dates_to_return')) {
-                tg.MainButton.setText("Поиск билетов");
+                tg.MainButton.setText(translations[getLanguage()]['Поиск билетов']);
                 tg.MainButton.show();
             } else {
 
@@ -829,7 +831,7 @@ from_field.addEventListener("input", function() {
     }
 
     if (from_field.value != '' && item.has('dates_to') && to_field.value != '' && item.has('from_field') && item.get('from_field') !== "" && item.has('to_field') && item.get('to_field') !== "") {
-        tg.MainButton.setText("Поиск билетов");
+        tg.MainButton.setText(translations[getLanguage()]['Поиск билетов']);
         tg.MainButton.show();
     }
 });
@@ -840,7 +842,7 @@ to_field.addEventListener("input", function() {
         tg.MainButton.hide();
     }
     if (to_field.value != '' && item.has('dates_to') && from_field.value != '' && item.has('from_field') && item.get('from_field') !== "" && item.has('to_field') && item.get('to_field') !== "") {
-        tg.MainButton.setText("Поиск билетов");
+        tg.MainButton.setText(translations[getLanguage()]['Поиск билетов']);
         tg.MainButton.show();
     }
 });
