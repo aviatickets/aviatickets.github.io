@@ -251,7 +251,7 @@ input_from_field.addEventListener('input', async () => {
     }
 
     try {
-        const response = await fetch(`https://autocomplete.travelpayouts.com/places2?locale=ru&types[]=airport&types[]=city&term=${query}&locale=ru`, {
+        const response = await fetch(`https://autocomplete.travelpayouts.com/places2?locale=${getLanguage()}&types[]=airport&types[]=city&term=${query}&locale=${getLanguage()}`, {
             "headers": {
                 "accept": "*/*",
                 "accept-language": "en",
@@ -400,7 +400,7 @@ input_to_field.addEventListener('input', async () => {
     }
 
     try {
-        const response = await fetch(`https://autocomplete.travelpayouts.com/places2?locale=ru&types[]=airport&types[]=city&term=${query}&locale=ru`, {
+        const response = await fetch(`https://autocomplete.travelpayouts.com/places2?locale=${getLanguage()}&types[]=airport&types[]=city&term=${query}&locale=${getLanguage()}`, {
             "headers": {
                 "accept": "*/*",
                 "accept-language": "en",
